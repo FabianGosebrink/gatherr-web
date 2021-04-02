@@ -4,7 +4,6 @@
 
 export const environment = {
   production: false,
-  // server: `https://gettogether-api.azurewebsites.net/`,
   server: `https://localhost:5001/`,
   api: `api/`,
   version: `v1/`,
