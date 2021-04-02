@@ -1,0 +1,102 @@
+<div
+  *ngIf="isEditing"
+  class="mb-20 topimage"
+  [style.backgroundImage]="
+    'url(' +
+    (filename ? filename : 'https://source.unsplash.com/random/750x200') +
+    ')'
+  "
+></div>
+
+<div class="container">
+  <div class="same-row mb-20">
+    <button mat-raised-button (click)="location.back()">
+      <mat-icon>west</mat-icon>Back
+    </button>
+  </div>
+
+  <div class="mt-20">
+    <h1>{{ isEditing ? 'Edit' : 'Create' }} Group</h1>
+
+    <form (ngSubmit)="save()" [formGroup]="form" class="mt-20">
+      <mat-form-field class="full-width">
+        <mat-label>Group name</mat-label>
+        <input
+          matInput
+          placeholder="Name of the group"
+          formControlName="name"
+        />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Description</mat-label>
+        <textarea
+          matInput
+          placeholder="..."
+          formControlName="description"
+        ></textarea>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Categories</mat-label>
+        <mat-select
+          formControlName="groupCategories"
+          multiple
+          [compareWith]="compareCategoryObjects"
+        >
+          <mat-option
+            *ngFor="let category of categories$ | async"
+            [value]="category"
+            >{{ category.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Place</mat-label>
+        <input
+          type="text"
+          matInput
+          formControlName="place"
+          (setAddress)="showPlaceOnMap($event)"
+          placeholder="Rom, Berlin, Zürich, ..."
+          #addressText
+        />
+      </mat-form-field>
+
+      <div #map class="map"></div>
+
+      <div class="align-center">
+        <input
+          hidden
+          #fileInput
+          type="file"
+          id="file"
+          (change)="setFilename(fileInput.files)"
+        />
+        <button
+          type="button"
+          color="primary"
+          mat-raised-button
+          (click)="pictureClicked()"
+        >
+          Choose Picture
+        </button>
+
+        <img [src]="base64File || filename" class="mt-20 full-width" />
+      </div>
+
+      <div class="buttonbar">
+        <button type="button" color="warn" mat-raised-button>Cancel</button>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="form.invalid"
+          [workspaceIsLoading]="isLoading$ | async"
+          [buttonText]="'Save'"
+          [loadingText]="'Saving...'"
+        ></button>
+      </div>
+    </form>
+  </div>
+</div>

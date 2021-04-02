@@ -1,0 +1,14 @@
+<div>
+  <workspace-navigation
+    (login)="login()"
+    (logout)="logout()"
+    (languageChanged)="languageChanged($event)"
+    [loggedIn]="loggedIn$ | async"
+    [userProfile]="currentProfile$ | async"
+    [userPicture]="avatar$ | async"
+    [availableLangs]="availableLangs"
+    [currentLang]="currentLang"
+  ></workspace-navigation>
+</div>
+<router-outlet></router-outlet>
+<workspace-footer></workspace-footer>

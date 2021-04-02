@@ -1,0 +1,15 @@
+<mat-list-item
+  ><h3 mat-line>{{ member?.userProfile?.username }}</h3>
+  <p mat-line>
+    <span></span>
+  </p>
+  <div *ngIf="allRoles">
+    <mat-form-field>
+      <mat-select [formControl]="currentRole" required name="currentRole">
+        <mat-option *ngFor="let role of allRoles" [value]="role">
+          {{ meetupRoles[role] }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-list-item>

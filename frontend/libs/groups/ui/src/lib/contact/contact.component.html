@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="same-row mb-20">
+    <button mat-raised-button (click)="location.back()">
+      <mat-icon>west</mat-icon>Back
+    </button>
+  </div>
+
+  <div class="mt-20">
+    <h1>Contact the members</h1>
+
+    <form (ngSubmit)="save()" [formGroup]="form" class="mt-20">
+      <mat-form-field class="full-width">
+        <mat-label>Subject</mat-label>
+        <input matInput placeholder="..." formControlName="subject" />
+        <mat-error *ngIf="form.get('subject').invalid"></mat-error>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Message</mat-label>
+        <textarea
+          matInput
+          placeholder="..."
+          rows="20"
+          formControlName="message"
+        ></textarea
+        ><mat-error *ngIf="form.get('message').invalid"></mat-error>
+      </mat-form-field>
+      <div class="buttonbar">
+        <button type="button" color="warn" mat-raised-button>Cancel</button>
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="form.invalid"
+          [workspaceIsLoading]="sending"
+          [buttonText]="'Send'"
+          [loadingText]="'Sending...'"
+        ></button>
+      </div>
+    </form>
+  </div>
+</div>

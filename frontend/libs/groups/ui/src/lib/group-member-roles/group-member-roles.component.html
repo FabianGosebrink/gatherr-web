@@ -1,0 +1,23 @@
+<h1>Members & Roles</h1>
+
+<mat-form-field class="full-width">
+  <mat-label>Type to search...</mat-label>
+  <input matInput placeholder="..." value="" [formControl]="searchText" />
+</mat-form-field>
+
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+<mat-list>
+  <div class="same-row">
+    <span mat-subheader>Member</span>
+    <span mat-subheader>Role</span>
+  </div>
+  <mat-divider></mat-divider>
+  <workspace-group-member-role-item
+    *ngFor="let member of members"
+    [memberCount]="members.length"
+    [member]="member"
+    [allGroupRoles]="allRoles"
+    (roleChanged)="roleChanged($event, member)"
+  ></workspace-group-member-role-item>
+</mat-list>

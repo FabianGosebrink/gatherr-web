@@ -1,0 +1,30 @@
+<mat-card class="card">
+  <mat-card-header class="pt-20 pb-10">
+    <mat-card-title>{{ item?.title || item?.name }}</mat-card-title>
+  </mat-card-header>
+
+  <div
+    class="card-image"
+    [style.backgroundImage]="
+      'url(' +
+      (item?.imageUrl
+        ? item?.imageUrl
+        : 'https://source.unsplash.com/random/200x200') +
+      ')'
+    "
+  ></div>
+  <div class="space-around">
+    <mat-card-content *ngIf="item?.description">
+      <p>
+        {{ item.date | date: 'mediumDate' }}
+        {{ item.date | date: 'H:mm' }}
+      </p>
+      <p>
+        {{ item.description | truncate: 100 }}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Explore</button>
+    </mat-card-actions>
+  </div>
+</mat-card>

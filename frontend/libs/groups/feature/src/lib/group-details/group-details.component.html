@@ -1,0 +1,112 @@
+<div *ngIf="item$ | async as item">
+  <div
+    class="mb-20 topimage"
+    [style.backgroundImage]="
+      'url(' +
+      (item?.imageUrl
+        ? item?.imageUrl
+        : 'https://source.unsplash.com/random/750x200') +
+      ')'
+    "
+  ></div>
+
+  <div class="container mb-20">
+    <div class="same-row">
+      <div>
+        <button mat-raised-button (click)="location.back()">
+          <mat-icon>west</mat-icon>Back
+        </button>
+      </div>
+
+      <div *ngIf="loggedIn$ | async">
+        <button
+          [disabled]="isLoading$ | async"
+          type="button"
+          mat-raised-button
+          color="primary"
+          *ngIf="!(isCurrentUserMember$ | async)"
+          class="btn btn-success btn-block"
+          (click)="becomeMember()"
+          [workspaceIsLoading]="isLoading$ | async"
+          [buttonText]="'Join Group'"
+          [loadingText]="'Loading...'"
+        ></button>
+        <div *ngIf="isCurrentUserMember$ | async">
+          <button
+            xPosition="before"
+            class="action-button"
+            mat-raised-button
+            color="primary"
+            [matMenuTriggerFor]="actions"
+          >
+            <mat-icon>menu</mat-icon>
+            Actions
+          </button>
+          <mat-menu #actions="matMenu">
+            <button
+              type="button"
+              mat-menu-item
+              class="btn btn-outline-secondary btn-block"
+              [routerLink]="['/groups', item.linkName, 'leave']"
+              *ngIf="isCurrentUserMember$ | async"
+              [disabled]="(allMembers$ | async).length === 1"
+            >
+              <mat-icon>person_remove</mat-icon>
+              Leave Group
+            </button>
+            <button
+              type="button"
+              mat-menu-item
+              class="btn btn-outline-secondary btn-block"
+              (click)="navigateToGroupEdit()"
+              *ngIf="isCurrentUserAdmin$ | async"
+            >
+              <mat-icon>edit</mat-icon>
+              Edit Group
+            </button>
+            <button
+              type="button"
+              mat-menu-item
+              class="btn btn-outline-secondary btn-block"
+              [routerLink]="['/groups', item.linkName, 'members']"
+              *ngIf="isCurrentUserAdmin$ | async"
+            >
+              <mat-icon>people</mat-icon>
+              Edit Members
+            </button>
+            <button
+              mat-menu-item
+              *ngIf="isCurrentUserAdmin$ | async"
+              type="button"
+              [routerLink]="['/groups', item.linkName, 'contact']"
+            >
+              <mat-icon>local_post_office</mat-icon>
+              Contact members
+            </button>
+          </mat-menu>
+        </div>
+      </div>
+    </div>
+    <div>
+      <workspace-group-main-info [item]="item" [address]="address$ | async">
+      </workspace-group-main-info>
+
+      <workspace-group-meetups
+        [upcomingMeetup]="upcomingMeetup$ | async"
+        [nextMeetup]="nextMeetup$ | async"
+        [previousMeetup]="previousMeetup$ | async"
+        [loggedIn]="loggedIn$ | async"
+        [canAddNewMeetups]="canAddNewMeetups$ | async"
+      ></workspace-group-meetups>
+
+      <workspace-members
+        [members]="allMembers$ | async"
+        [title]="'Members'"
+      ></workspace-members>
+    </div>
+  </div>
+
+  <workspace-add-meetup-button
+    *ngIf="canAddNewMeetups$ | async"
+  ></workspace-add-meetup-button>
+</div>

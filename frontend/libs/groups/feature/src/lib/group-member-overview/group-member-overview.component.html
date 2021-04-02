@@ -1,0 +1,29 @@
+<div
+  *ngIf="group$ | async as group"
+  class="mb-20 topimage"
+  [style.backgroundImage]="
+    'url(' +
+    (group?.imageUrl
+      ? group?.imageUrl
+      : 'https://source.unsplash.com/random/750x200') +
+    ')'
+  "
+></div>
+
+<div class="container">
+  <div class="same-row mb-20">
+    <button mat-raised-button (click)="location.back()">
+      <mat-icon>west</mat-icon>Back
+    </button>
+  </div>
+
+  <div class="mt-20">
+    <div class="mt-50">
+      <workspace-group-member-roles
+        [members]="members$ | async"
+        (memberRoleChanged)="changeRole($event)"
+        [allRoles]="allGroupRoles$ | async"
+      ></workspace-group-member-roles>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="same-row mb-20">
+    <button mat-raised-button (click)="location.back()">
+      <mat-icon>west</mat-icon><span>Back</span>
+    </button>
+  </div>
+
+  <div *ngIf="userProfile$ | async as userProfile">
+    <div class="mb-30">
+      <h1>{{ userProfile.username }}'s profile</h1>
+    </div>
+
+    <div class="mt-20">
+      <div class="box mb-20">
+        <ng-template #nopicture
+          ><img
+            src="https://api.adorable.io/avatars/200/abott@adorable.png"
+            class="profile-picture"
+        /></ng-template>
+        <ng-container>
+          <div
+            *ngIf="
+              userProfile?.imageUrl || userPicture as fileUrl;
+              else nopicture
+            "
+          >
+            <img [src]="fileUrl" class="profile-picture" />
+          </div>
+        </ng-container>
+      </div>
+      {{ userProfile | json }}
+      <mat-form-field class="full-width">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          placeholder="Username"
+          [value]="userProfile.username"
+          disabled
+        />
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>About </mat-label>
+        <textarea
+          matInput
+          placeholder="..."
+          [value]="userProfile.aboutMe"
+          disabled
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<mat-list-item
+  ><h3 mat-line>{{ member?.userProfile?.username }}</h3>
+  <p mat-line>
+    <span></span>
+  </p>
+  <div *ngIf="allGroupRoles">
+    <mat-form-field>
+      <mat-select [formControl]="currentRole" required>
+        <mat-option *ngFor="let groupRole of allGroupRoles" [value]="groupRole">
+          {{ groupRoles[groupRole] }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</mat-list-item>

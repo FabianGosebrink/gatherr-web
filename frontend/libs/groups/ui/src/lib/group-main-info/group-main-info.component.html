@@ -1,0 +1,29 @@
+<div class="mt-30 mb-20 main-info-container">
+  <div class="same-row mt-20 mb-20">
+    <div>
+      <h1>{{ item?.name }}</h1>
+    </div>
+  </div>
+
+  <div class="mt-20">
+    <workspace-map
+      [lat]="item?.latitude"
+      [lng]="item?.longitude"
+      [heightInPx]="250"
+    ></workspace-map>
+  </div>
+
+  <div class="mt-20 same-row">
+    <workspace-group-categories
+      [groupCategories]="item?.groupCategories"
+    ></workspace-group-categories>
+    <workspace-group-information-widget
+      [address]="address"
+    ></workspace-group-information-widget>
+  </div>
+  <div class="mt-30 mb-30">
+    <workspace-group-description
+      [description]="item?.description"
+    ></workspace-group-description>
+  </div>
+</div>

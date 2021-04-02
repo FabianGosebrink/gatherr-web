@@ -1,0 +1,129 @@
+{
+  "npmScope": "workspace",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tslint.json": "*",
+    "nx.json": "*",
+    "tsconfig.base.json": "*"
+  },
+  "projects": {
+    "gatherr": {
+      "tags": []
+    },
+    "gatherr-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gatherr"]
+    },
+    "shared-ui-common": {
+      "tags": []
+    },
+    "shared-ui-layout": {
+      "tags": []
+    },
+    "shared-data": {
+      "tags": []
+    },
+    "shared-utils": {
+      "tags": []
+    },
+    "category-data": {
+      "tags": []
+    },
+    "category-api": {
+      "tags": []
+    },
+    "auth-api": {
+      "tags": []
+    },
+    "auth-feature": {
+      "tags": []
+    },
+    "auth-util": {
+      "tags": []
+    },
+    "auth-data": {
+      "tags": []
+    },
+    "home-feature": {
+      "tags": []
+    },
+    "home-ui": {
+      "tags": []
+    },
+    "maps-util": {
+      "tags": []
+    },
+    "groups-api": {
+      "tags": []
+    },
+    "groups-feature": {
+      "tags": []
+    },
+    "groups-ui": {
+      "tags": []
+    },
+    "groups-data": {
+      "tags": []
+    },
+    "personal-feature": {
+      "tags": []
+    },
+    "home-data": {
+      "tags": []
+    },
+    "home-api": {
+      "tags": []
+    },
+    "shared-environment": {
+      "tags": []
+    },
+    "shared-api": {
+      "tags": []
+    },
+    "shared-state": {
+      "tags": []
+    },
+    "features-camera": {
+      "tags": []
+    },
+    "groups-utils": {
+      "tags": []
+    },
+    "features-notification": {
+      "tags": []
+    },
+    "profile-feature": {
+      "tags": []
+    },
+    "profile-util": {
+      "tags": []
+    },
+    "profile-data": {
+      "tags": []
+    },
+    "profile-api": {
+      "tags": []
+    },
+    "personal-api": {
+      "tags": []
+    },
+    "personal-data": {
+      "tags": []
+    }
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "affected": {
+    "defaultBase": "master"
+  }
+}

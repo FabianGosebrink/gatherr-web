@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>Take a picture</h2>
+<mat-dialog-content class="mat-typography">
+  <div class="btn-group">
+    <button mat-button color="primary" [mat-dialog-close]="'file'">
+      From File
+    </button>
+    <button mat-button color="primary" [mat-dialog-close]="'camera'">
+      From Camera
+    </button>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button color="warn" mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

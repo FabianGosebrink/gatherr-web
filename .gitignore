@@ -1,0 +1,11 @@
+/backend/aspnetcore/obj
+/backend/aspnetcore/bin
+/backend/Gatherr/.vs
+/backend/**/**/bin
+/backend/**/**/obj
+/backend/Gatherr/Gatherr.Api/Properties/PublishProfiles
+/backend/Gatherr/Gatherr.Api/.config/
+/backend/Gatherr/Gatherr.Api/wwwroot/Upload/
+/frontend/workspace/.temp
+/frontend/workspace/.dist
+backend/Gatherr/Gatherr.Api/Gatherr.Api.csproj.user

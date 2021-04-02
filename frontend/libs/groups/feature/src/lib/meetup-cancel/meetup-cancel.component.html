@@ -1,0 +1,12 @@
+<div class="container" *ngIf="item$ | async as item">
+  <workspace-confirm
+    [questionText]="
+      'Do you really want to ' +
+      (item?.state === 1 ? 'activate' : 'cancel') +
+      ' the gathering?'
+    "
+    [okText]="'Yes'"
+    [cancelText]="'No'"
+    (clicked)="cancelMeetup($event)"
+  ></workspace-confirm>
+</div>

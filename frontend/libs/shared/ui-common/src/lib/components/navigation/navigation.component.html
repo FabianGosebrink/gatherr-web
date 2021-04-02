@@ -1,0 +1,72 @@
+<mat-toolbar color="primary">
+  <span><mat-icon></mat-icon></span>
+
+  <span><a [routerLink]="['/']">Gatherr</a></span>
+
+  <span class="example-spacer"></span>
+
+  <div class="mr-20">
+    <button
+      mat-icon-button
+      *ngFor="let lang of availableLangs"
+      (click)="languageChanged.emit(lang)"
+      [disabled]="lang === currentLang"
+    >
+      {{ lang }}
+    </button>
+  </div>
+  <button mat-stroked-button (click)="doLogin()" *ngIf="!loggedIn">
+    Login
+  </button>
+  <button
+    mat-stroked-button
+    [routerLink]="['groups/create']"
+    *ngIf="loggedIn"
+    class="mr-20"
+  >
+    Create Group
+  </button>
+  <button
+    *ngIf="loggedIn"
+    mat-icon-button
+    class="example-icon favorite-icon"
+    aria-label="Example icon-button with heart icon"
+    [routerLink]="['profile', userProfile?.id]"
+  >
+    <img [src]="userProfile?.imageUrl || userPicture" class="profile-picture" />
+  </button>
+
+  <button mat-icon-button [mat-menu-trigger-for]="menu">
+    <mat-icon class="dark-icon">more_vert</mat-icon>
+  </button>
+</mat-toolbar>
+<mat-menu x-position="before" #menu="matMenu">
+  <button mat-menu-item [routerLink]="['groups']" *ngIf="!loggedIn">
+    {{ 'groups' | transloco }}
+  </button>
+  <div *ngIf="loggedIn">
+    <button mat-menu-item [routerLink]="['groups']">
+      {{ 'groups' | transloco }}
+    </button>
+    <button mat-menu-item [routerLink]="['groups/create']">
+      {{ 'create-a-group' | transloco }}
+    </button>
+    <mat-divider></mat-divider>
+
+    <button mat-menu-item [routerLink]="['personal/groups']">
+      {{ 'my-groups' | transloco }}
+    </button>
+    <button mat-menu-item [routerLink]="['personal/meetups']">
+      {{ 'my-meetups' | transloco }}
+    </button>
+    <mat-divider></mat-divider>
+
+    <mat-divider></mat-divider>
+    <button mat-menu-item [routerLink]="['profile', userProfile?.id]">
+      {{ 'profile' | transloco }}
+    </button>
+    <button mat-menu-item (click)="doLogout()">
+      Logout ({{ userProfile?.username }})
+    </button>
+  </div>
+</mat-menu>

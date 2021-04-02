@@ -1,0 +1,11 @@
+<div>
+  <h4>{{ questionText }}</h4>
+</div>
+<div class="bottom same-row">
+  <button type="button" color="warn" mat-raised-button (click)="cancel()">
+    {{ cancelText }}
+  </button>
+  <button mat-raised-button color="primary" type="button" (click)="ok()">
+    {{ okText }}
+  </button>
+</div>

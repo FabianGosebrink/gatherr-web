@@ -1,0 +1,19 @@
+.profile-picture {
+  height: 200px;
+  width: 200px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.buttonbar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}

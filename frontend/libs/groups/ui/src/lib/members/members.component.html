@@ -1,0 +1,25 @@
+<div class="mt-20 mb-20">
+  <h1>{{ title }} ({{ members.length }})</h1>
+  <div class="wrapper">
+    <div *ngFor="let member of members">
+      <div class="item" [routerLink]="['/profile', member.userProfile?.id]">
+        <img
+          class="avatar-circle"
+          [src]="member.userProfile?.imageUrl"
+          alt=""
+          [title]="member.userProfile.username"
+          *ngIf="member.userProfile?.imageUrl; else nopicture"
+        />
+        <ng-template #nopicture>
+          <img
+            class="avatar-circle"
+            src="https://api.adorable.io/avatars/50/abott@adorable.png"
+            alt=""
+            [title]="member.userProfile?.username"
+          />
+        </ng-template>
+        <span class="caption">{{ member.userProfile?.username }}</span>
+      </div>
+    </div>
+  </div>
+</div>

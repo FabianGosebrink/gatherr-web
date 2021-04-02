@@ -1,0 +1,17 @@
+.meetup-list {
+  overflow: hidden;
+}
+
+.buttonbar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.mat-raised-button.mat-primary {
+  margin-left: 20px;
+}
+
+.pointer {
+  cursor: pointer;
+}

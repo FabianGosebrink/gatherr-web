@@ -1,0 +1,17 @@
+<div class="mb-20">
+  <ng-template #noItems>
+    No items found...
+  </ng-template>
+</div>
+<workspace-picture-list
+  *ngIf="items?.length > 0; else noItems"
+  [items]="items"
+  (itemClicked)="
+    router.navigate([
+      '/groups',
+      $event.groupLinkName,
+      'meetups',
+      $event.linkName
+    ])
+  "
+></workspace-picture-list>

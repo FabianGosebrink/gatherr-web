@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gatherr.Data\Gatherr.Data.csproj" />
+    <ProjectReference Include="..\Gatherr.Email\Gatherr.Email.csproj" />
+    <ProjectReference Include="..\Gatherr.Models\Gatherr.Models.csproj" />
+  </ItemGroup>
+
+</Project>

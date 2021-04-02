@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="same-row mb-20">
+    <button mat-raised-button (click)="location.back()">
+      <mat-icon>west</mat-icon>Back
+    </button>
+  </div>
+
+  <div *ngIf="userProfile$ | async as userProfile">
+    <div class="mb-30">
+      <h1>{{ userProfile.username }}'s profile</h1>
+    </div>
+
+    <div class="mt-20">
+      <div class="box mb-20" (click)="pictureClicked()">
+        <ng-template #nopicture
+          ><img
+            src="https://api.adorable.io/avatars/200/abott@adorable.png"
+            class="profile-picture"
+        /></ng-template>
+        <ng-container>
+          <div
+            *ngIf="
+              base64File || userProfile.imageUrl as fileUrl;
+              else nopicture
+            "
+          >
+            <img [src]="fileUrl" class="profile-picture" />
+          </div>
+        </ng-container>
+      </div>
+
+      <form (ngSubmit)="updateProfile()" [formGroup]="form">
+        <mat-form-field class="full-width">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="Username" formControlName="username" />
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>About </mat-label>
+          <textarea
+            matInput
+            placeholder="..."
+            formControlName="aboutMe"
+          ></textarea>
+        </mat-form-field>
+
+        <input hidden #fileInput type="file" id="file" />
+
+        <label class="custom-file-label">{{ filename }}</label>
+
+        <div class="buttonbar">
+          <button type="button" color="warn" mat-raised-button>Cancel</button>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="form.invalid"
+            [workspaceIsLoading]="isLoading$ | async"
+            [buttonText]="'Save'"
+            [loadingText]="'Saving...'"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

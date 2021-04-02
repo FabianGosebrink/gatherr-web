@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Circular, 'Helvetica Neue', sans-serif;
+}
+
+.container {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-30 {
+  margin-top: 20px;
+}
+
+.mt-50 {
+  margin-top: 50px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.mr-30 {
+  margin-right: 30px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.same-row {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.avatar-circle {
+  height: 50px;
+  width: 50px;
+  background-color: #bbb;
+  text-align: center;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+}
+
+.topimage {
+  height: 400px;
+  width: 100;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+// Will target mobile devices in landscape mode and up
+@media only screen and (max-width: 480px) {
+  .container {
+    width: 90%;
+  }
+}
+@media only screen and (min-width: 480px) {
+  .container {
+    width: 90%;
+  }
+}
+
+// Targets tablets in portrait mode and up
+@media only screen and (min-width: 600px) {
+  .container {
+    width: 90%;
+  }
+}
+
+// Targets tablets in landscape mode and up
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 90%;
+  }
+}
+
+// Targets the desktop view
+@media only screen and (min-width: 1200px) {
+  .container {
+    width: 60%;
+  }
+}
+
+// Targets the desktop view
+@media only screen and (min-width: 1600px) {
+  .container {
+    width: 60%;
+  }
+}

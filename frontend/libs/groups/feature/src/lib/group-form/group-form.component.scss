@@ -1,0 +1,21 @@
+.buttonbar {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.map {
+  height: 350px;
+  margin-bottom: 20px;
+}
+
+.custom-file-label {
+  margin-left: 20px;
+}
+
+.align-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  //justify-content: center;
+}

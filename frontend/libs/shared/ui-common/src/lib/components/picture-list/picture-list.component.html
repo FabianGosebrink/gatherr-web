@@ -1,0 +1,25 @@
+<mat-progress-bar
+  mode="indeterminate"
+  *ngIf="isLoading; else content"
+></mat-progress-bar>
+
+<ng-template #content>
+  <div *ngIf="headline">
+    <h1>
+      {{ headline }}
+      <a href="https://www.google.com/" target="_blank">See all</a>
+    </h1>
+  </div>
+  <div class="content tile" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <div
+      [fxFlex]="100 / gridColumns + '%'"
+      fxFlex.xs="100%"
+      fxFlex.sm="50%"
+      fxFlex.lg="50%"
+      *ngFor="let item of items"
+      (click)="itemClicked.emit(item)"
+    >
+      <workspace-picture-card [item]="item"></workspace-picture-card>
+    </div>
+  </div>
+</ng-template>
