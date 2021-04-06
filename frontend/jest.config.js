@@ -33,5 +33,6 @@ module.exports = {
     '<rootDir>/libs/profile/api',
     '<rootDir>/libs/personal/api',
     '<rootDir>/libs/personal/data',
+    '<rootDir>/libs/gatherr-ui',
   ],
 };

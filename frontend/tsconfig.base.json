@@ -50,7 +50,8 @@
       "@workspace/profile/api": ["libs/profile/api/src/index.ts"],
       "@workspace/personal/api": ["libs/personal/api/src/index.ts"],
       "@workspace/personal/data": ["libs/personal/data/src/index.ts"],
-      "@workspace/tools/testing": ["tools/testing/index.ts"]
+      "@workspace/tools/testing": ["tools/testing/index.ts"],
+      "@workspace/gatherr-ui": ["libs/gatherr-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
