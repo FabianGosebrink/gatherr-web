@@ -12,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import * as fromCategories from '@workspace/category/data';
-import { DesktopCameraService, Photo } from '@workspace/features/camera';
+import { DesktopCameraService, Photo } from '@workspace/shared/camera';
 import * as fromGroupStore from '@workspace/groups/data';
 import { MapsService } from '@workspace/maps/util';
 import { Category } from '@workspace/shared/data';

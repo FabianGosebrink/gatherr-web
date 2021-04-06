@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { SnackbarNotificationService } from '@workspace/features/notification';
+import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { ContactApiService, MeetupsApiService } from '@workspace/groups/api';
 import { MapsService } from '@workspace/maps/util';
 import { MeetupState } from '@workspace/shared/data';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { SnackbarNotificationService } from '@workspace/features/notification';
+import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { LocalMeetupsApiService } from '@workspace/home/api';
 import { MapsService } from '@workspace/maps/util';
 import { AddressExtractor } from '@workspace/shared/utils';

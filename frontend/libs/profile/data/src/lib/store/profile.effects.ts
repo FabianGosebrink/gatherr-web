@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { SnackbarNotificationService } from '@workspace/features/notification';
+import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { ProfileApiService } from '@workspace/profile/api';
 import * as sharedProfileActions from '@workspace/shared/state';
 import { UploadApiService, UtilsService } from '@workspace/shared/utils';
