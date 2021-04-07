@@ -1,13 +1,21 @@
-﻿using System.Linq;
+﻿using Microsoft.AspNetCore.Http;
+using System.Linq;
 using System.Security.Claims;
 
 namespace Gatherr.Services.ControllerService
 {
     public class UserIdentityControllerService : IUserIdentityControllerService
     {
-        public string GetCurrentUsersEmail(ClaimsPrincipal user)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public UserIdentityControllerService(IHttpContextAccessor httpContextAccessor)
         {
-            return user.Claims.FirstOrDefault(claim => claim.Type == "email").Value;
+            _httpContextAccessor = httpContextAccessor;
+        }
+
+        public string GetCurrentUsersIdentifier(ClaimsPrincipal user)
+        {
+            return _httpContextAccessor.HttpContext?.User.Claims.Where(c => c.Type == ClaimTypes.NameIdentifier).SingleOrDefault()?.Value;
         }
     }
 }

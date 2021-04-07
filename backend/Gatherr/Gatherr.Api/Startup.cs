@@ -106,6 +106,8 @@ namespace Gatherr.Api
                 return factory.GetUrlHelper(actionContext);
             });
 
+            services.AddHttpContextAccessor();
+
             services.AddMappingProfiles();
 
             services.AddControllers()

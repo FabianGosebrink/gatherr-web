@@ -63,9 +63,9 @@ namespace Gatherr.Api.Controllers.v1
                 return BadRequest();
             }
 
-            var currentuserEmail = _userIdentityControllerService.GetCurrentUsersEmail(User);
+            var currentUserIdentifier = _userIdentityControllerService.GetCurrentUsersIdentifier(User);
 
-            var result = _controllerService.Add(createDto, currentuserEmail);
+            var result = _controllerService.Add(createDto, currentUserIdentifier);
 
             if (result == null)
             {

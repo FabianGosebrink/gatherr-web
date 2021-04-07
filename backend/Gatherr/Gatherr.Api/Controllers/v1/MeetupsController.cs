@@ -100,9 +100,9 @@ namespace Gatherr.Api.Controllers.v1
                 return BadRequest();
             }
 
-            var currentuserEmail = _userIdentityControllerService.GetCurrentUsersEmail(User);
+            var currentUserIdentifier = _userIdentityControllerService.GetCurrentUsersIdentifier(User);
 
-            var result = _controllerService.AddMeetupToGroup(groupLinkName, createDto, currentuserEmail);
+            var result = _controllerService.AddMeetupToGroup(groupLinkName, createDto, currentUserIdentifier);
 
             if (result == null)
             {

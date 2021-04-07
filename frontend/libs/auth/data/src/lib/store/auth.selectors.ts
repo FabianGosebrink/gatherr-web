@@ -15,7 +15,7 @@ export const selectCurrentUserName = createSelector(
 
 export const selectCurrentUserIdentifier = createSelector(
   selectCurrentUserProfile,
-  (profile: any) => profile.email
+  (profile: any) => profile.sub
 );
 
 export const selectIsLoggedIn = createSelector(

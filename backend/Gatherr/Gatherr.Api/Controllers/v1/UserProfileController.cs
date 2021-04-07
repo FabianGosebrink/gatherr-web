@@ -27,9 +27,9 @@ namespace Gatherr.Api.Controllers.v1
         [Route("", Name = nameof(GetCurrentUserProfile))]
         public ActionResult GetCurrentUserProfile()
         {
-            var currentuserEmail = _userIdentityControllerService.GetCurrentUsersEmail(User);
+            var currentUserIdentifier = _userIdentityControllerService.GetCurrentUsersIdentifier(User);
 
-            var result = _userProfileControllerService.GetUserProfile(currentuserEmail);
+            var result = _userProfileControllerService.GetUserProfile(currentUserIdentifier);
 
             if (result == null)
             {

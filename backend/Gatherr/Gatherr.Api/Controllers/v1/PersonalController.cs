@@ -30,9 +30,9 @@ namespace Gatherr.Api.Controllers.v1
         [Route("groups", Name = nameof(GetAllPersonalGroups))]
         public ActionResult GetAllPersonalGroups([FromQuery] GroupsQueryParameters queryParameters)
         {
-            var currentuserEmail = _userIdentityControllerService.GetCurrentUsersEmail(User);
+            var currentUserIdentifier = _userIdentityControllerService.GetCurrentUsersIdentifier(User);
 
-            var result = _groupsControllerService.GetAllPersonalGroups(currentuserEmail, queryParameters);
+            var result = _groupsControllerService.GetAllPersonalGroups(currentUserIdentifier, queryParameters);
 
             if (result == null)
             {
@@ -46,9 +46,9 @@ namespace Gatherr.Api.Controllers.v1
         [Route("meetups", Name = nameof(GetAllPersonalMeetups))]
         public ActionResult GetAllPersonalMeetups()
         {
-            var currentuserEmail = _userIdentityControllerService.GetCurrentUsersEmail(User);
+            var currentUserIdentifier = _userIdentityControllerService.GetCurrentUsersIdentifier(User);
 
-            var result = _meetupControllerService.GetAllPersonalMeetups(currentuserEmail);
+            var result = _meetupControllerService.GetAllPersonalMeetups(currentUserIdentifier);
 
             if (result == null)
             {

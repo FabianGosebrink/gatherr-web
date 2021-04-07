@@ -4,6 +4,6 @@ namespace Gatherr.Services.ControllerService
 {
     public interface IUserIdentityControllerService
     {
-        string GetCurrentUsersEmail(ClaimsPrincipal user);
+        string GetCurrentUsersIdentifier(ClaimsPrincipal user);
     }
 }

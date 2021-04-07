@@ -42,12 +42,12 @@ export class AuthEffects {
       switchMap(() => this.authService.user$),
       take(1),
       switchMap((profile) => {
-        const { email, name, picture } = profile;
+        const { sub, name, picture } = profile;
         return [
           addSharedProfile({
             payload: {
               username: name,
-              userIdentifier: email,
+              userIdentifier: sub,
               imageUrl: picture,
             },
           }),
