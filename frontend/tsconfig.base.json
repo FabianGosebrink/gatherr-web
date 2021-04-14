@@ -39,10 +39,10 @@
       "@workspace/shared/environment": ["libs/shared/environment/src/index.ts"],
       "@workspace/shared/api": ["libs/shared/api/src/index.ts"],
       "@workspace/shared/state": ["libs/shared/state/src/index.ts"],
-      "@workspace/features/camera": ["libs/features/camera/src/index.ts"],
+      "@workspace/shared/camera": ["libs/shared/camera/src/index.ts"],
       "@workspace/groups/utils": ["libs/groups/utils/src/index.ts"],
-      "@workspace/features/notification": [
-        "libs/features/notification/src/index.ts"
+      "@workspace/shared/notification": [
+        "libs/shared/notification/src/index.ts"
       ],
       "@workspace/profile/feature": ["libs/profile/feature/src/index.ts"],
       "@workspace/profile/util": ["libs/profile/util/src/index.ts"],
@@ -50,7 +50,8 @@
       "@workspace/profile/api": ["libs/profile/api/src/index.ts"],
       "@workspace/personal/api": ["libs/personal/api/src/index.ts"],
       "@workspace/personal/data": ["libs/personal/data/src/index.ts"],
-      "@workspace/tools/testing": ["tools/testing/index.ts"]
+      "@workspace/tools/testing": ["tools/testing/index.ts"],
+      "@workspace/gatherr-ui": ["libs/gatherr-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

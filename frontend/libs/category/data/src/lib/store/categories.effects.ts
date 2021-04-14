@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { CategoriesApiService } from '@workspace/category/api';
-import { SnackbarNotificationService } from '@workspace/features/notification';
+import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import * as fromCategoriesActions from './categories.actions';

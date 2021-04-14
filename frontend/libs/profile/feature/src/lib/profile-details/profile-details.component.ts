@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { DesktopCameraService, Photo } from '@workspace/features/camera';
+import { DesktopCameraService, Photo } from '@workspace/shared/camera';
 import {
   getProfile,
   selectIsLoading,

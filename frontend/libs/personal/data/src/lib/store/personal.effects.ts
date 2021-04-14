@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { SnackbarNotificationService } from '@workspace/features/notification';
+import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { PersonalApiService } from '@workspace/personal/api';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
