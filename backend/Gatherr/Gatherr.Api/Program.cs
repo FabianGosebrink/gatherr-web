@@ -35,14 +35,14 @@ namespace Gatherr.Api
             host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>œ
              Host.CreateDefaultBuilder(args)
                  .ConfigureWebHostDefaults(webBuilder =>
                      webBuilder.ConfigureAppConfiguration(config =>
                      {
-                         var settings = config.Build();
-                         var connection = settings.GetConnectionString("AppConfig");
-                         config.AddAzureAppConfiguration(connection);
+                         // var settings = config.Build();
+                         // var connection = settings.GetConnectionString("AppConfig");
+                         // config.AddAzureAppConfiguration(connection);
                      }).UseStartup<Startup>());
     }
 }
