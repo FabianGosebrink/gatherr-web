@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   currentLang: string;
 
   constructor(
-    private store: Store<any>,
+    private store: Store,
     private router: Router,
     private translocoService: TranslocoService
   ) {}
