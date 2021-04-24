@@ -771,20 +771,20 @@
       },
       "schematics": {}
     },
-    "features-camera": {
+    "shared-camera": {
       "projectType": "library",
-      "root": "libs/features/camera",
-      "sourceRoot": "libs/features/camera/src",
+      "root": "libs/shared/camera",
+      "sourceRoot": "libs/shared/camera/src",
       "prefix": "workspace",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/features/camera/tsconfig.lib.json",
-              "libs/features/camera/tsconfig.spec.json"
+              "libs/shared/camera/tsconfig.lib.json",
+              "libs/shared/camera/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!libs/features/camera/**/*"]
+            "exclude": ["**/node_modules/**", "!libs/shared/camera/**/*"]
           }
         },
         "test": {
@@ -825,32 +825,29 @@
       },
       "schematics": {}
     },
-    "features-notification": {
+    "shared-notification": {
       "projectType": "library",
-      "root": "libs/features/notification",
-      "sourceRoot": "libs/features/notification/src",
+      "root": "libs/shared/notification",
+      "sourceRoot": "libs/shared/notification/src",
       "prefix": "workspace",
       "architect": {
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "libs/features/notification/tsconfig.lib.json",
-              "libs/features/notification/tsconfig.spec.json"
+              "libs/shared/notification/tsconfig.lib.json",
+              "libs/shared/notification/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**",
-              "!libs/features/notification/**/*"
-            ]
+            "exclude": ["**/node_modules/**", "!libs/shared/notification/**/*"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "libs/features/notification/jest.config.js",
+            "jestConfig": "libs/shared/notification/jest.config.js",
             "passWithNoTests": true
           },
-          "outputs": ["coverage/libs/features/notification"]
+          "outputs": ["coverage/libs/shared/notification"]
         }
       },
       "schematics": {}

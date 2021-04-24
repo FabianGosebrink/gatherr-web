@@ -104,13 +104,13 @@
     "shared-state": {
       "tags": []
     },
-    "features-camera": {
+    "shared-camera": {
       "tags": []
     },
     "groups-utils": {
       "tags": []
     },
-    "features-notification": {
+    "shared-notification": {
       "tags": []
     },
     "profile-feature": {
