@@ -1040,13 +1040,12 @@
       "prefix": "workspace",
       "architect": {
         "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
+          "builder": "@nrwl/linter:eslint",
           "options": {
-            "tsConfig": [
-              "libs/gatherr-ui/tsconfig.lib.json",
-              "libs/gatherr-ui/tsconfig.spec.json"
-            ],
-            "exclude": ["**/node_modules/**", "!libs/gatherr-ui/**/*"]
+            "lintFilePatterns": [
+              "libs/gatherr-ui/src/**/*.ts",
+              "libs/gatherr-ui/src/**/*.html"
+            ]
           }
         },
         "test": {
