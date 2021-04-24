@@ -1,6 +1,5 @@
-import { Story } from '@storybook/angular';
 import { text } from '@storybook/addon-knobs';
-
+import { Story } from '@storybook/angular';
 import { GatherrUiModule } from '../gatherr-ui.module';
 
 export default { title: '<grr-button>' };
