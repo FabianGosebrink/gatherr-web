@@ -10,7 +10,7 @@
     "tsconfig.base.json": "*"
   },
   "affected": {
-    "defaultBase": "master"
+    "defaultBase": "main"
   },
   "npmScope": "workspace",
   "tasksRunnerOptions": {
@@ -29,12 +29,28 @@
   },
   "projects": {
     "gatherr": {
-      "tags": []
+      "tags": ["app"]
     },
     "gatherr-e2e": {
       "tags": [],
       "implicitDependencies": ["gatherr"]
     },
+    "auth-feature": {
+      "tags": ["app-feature"]
+    },
+    "groups-feature": {
+      "tags": ["app-feature"]
+    },
+    "home-feature": {
+      "tags": ["app-feature"]
+    },
+    "personal-feature": {
+      "tags": ["app-feature"]
+    },
+    "profile-feature": {
+      "tags": ["app-feature"]
+    },
+
     "shared-ui-common": {
       "tags": []
     },
@@ -56,16 +72,10 @@
     "auth-api": {
       "tags": []
     },
-    "auth-feature": {
-      "tags": []
-    },
     "auth-util": {
       "tags": []
     },
     "auth-data": {
-      "tags": []
-    },
-    "home-feature": {
       "tags": []
     },
     "home-ui": {
@@ -77,18 +87,14 @@
     "groups-api": {
       "tags": []
     },
-    "groups-feature": {
-      "tags": []
-    },
+
     "groups-ui": {
       "tags": []
     },
     "groups-data": {
       "tags": []
     },
-    "personal-feature": {
-      "tags": []
-    },
+
     "home-data": {
       "tags": []
     },
@@ -113,9 +119,7 @@
     "shared-notification": {
       "tags": []
     },
-    "profile-feature": {
-      "tags": []
-    },
+
     "profile-util": {
       "tags": []
     },
