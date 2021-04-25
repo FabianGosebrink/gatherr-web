@@ -134,13 +134,6 @@
     },
     "personal-data": {
       "tags": []
-    },
-    "gatherr-ui": {
-      "tags": []
-    },
-    "gatherr-ui-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gatherr-ui"]
     }
   }
 }
