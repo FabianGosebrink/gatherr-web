@@ -76,7 +76,7 @@
     "@nrwl/eslint-plugin-nx": "12.0.8",
     "@nrwl/jest": "12.0.8",
     "@nrwl/linter": "12.0.8",
-    "@nrwl/storybook": "12.0.8",
+    "@nrwl/storybook": "^12.0.8",
     "@nrwl/tao": "12.0.8",
     "@nrwl/workspace": "12.0.8",
     "@storybook/addon-knobs": "^6.1.11",
