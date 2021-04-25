@@ -1,13 +1,11 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { provideMockStore } from '@ngrx/store/testing';
 import { getTranslocoModule } from '@workspace/tools/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
-  let store: MockStore;
-
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
@@ -16,8 +14,6 @@ describe('AppComponent', () => {
         providers: [provideMockStore({})],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
-
-      store = TestBed.inject(MockStore);
     })
   );
 

@@ -1,4 +1,8 @@
-import { routerReducer, RouterReducerState } from '@ngrx/router-store';
+import {
+  BaseRouterStoreState,
+  routerReducer,
+  RouterReducerState,
+} from '@ngrx/router-store';
 import { ActionReducerMap } from '@ngrx/store';
 import { AuthEffects, authReducer, AuthRootState } from '@workspace/auth/data';
 import {
@@ -9,7 +13,7 @@ import {
 
 export interface AppState {
   auth: AuthRootState;
-  router: RouterReducerState<any>;
+  router: RouterReducerState<BaseRouterStoreState>;
   categories: CategoriesRootState;
 }
 

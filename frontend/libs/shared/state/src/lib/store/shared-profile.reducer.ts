@@ -2,6 +2,26 @@ import { ActionReducerMap, createReducer, on } from '@ngrx/store';
 import { UserProfile } from '@workspace/shared/data';
 import * as sharedProfileActions from './shared-profile.actions';
 
+/**
+ *  Helper that is needed since the last TypeScript update
+ *
+ *  The reducer uses a Union Type UserProfile | UserProfileCreated
+ *
+ *  UserProfileCreated is only a subset of UserProfile and causes a compiler error.
+ *
+ *  This method is used to ensure, that all properties of UserProfile exist.
+ *
+ * */
+function emptyUserProfile(): UserProfile {
+  return {
+    id: '',
+    aboutMe: '',
+    imageUrl: '',
+    userIdentifier: '',
+    username: '',
+  };
+}
+
 export interface ReducerSharedProfileState {
   userProfile: UserProfile;
   loading: boolean;
@@ -29,7 +49,7 @@ export const sharedProfileReducer = createReducer(
     (state, { payload }) => {
       return {
         ...state,
-        userProfile: payload.value,
+        userProfile: { ...emptyUserProfile(), ...payload.value },
         loading: false,
       };
     }

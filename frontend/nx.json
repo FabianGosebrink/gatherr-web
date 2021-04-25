@@ -1,12 +1,17 @@
 {
   "implicitDependencies": {
     "angular.json": "*",
-    "package.json": { "dependencies": "*", "devDependencies": "*" },
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
     "tslint.json": "*",
     "nx.json": "*",
     "tsconfig.base.json": "*"
   },
-  "affected": { "defaultBase": "master" },
+  "affected": {
+    "defaultBase": "main"
+  },
   "npmScope": "workspace",
   "tasksRunnerOptions": {
     "default": {
@@ -23,41 +28,119 @@
     }
   },
   "projects": {
-    "gatherr": { "tags": [] },
-    "gatherr-e2e": { "tags": [], "implicitDependencies": ["gatherr"] },
-    "shared-ui-common": { "tags": [] },
-    "shared-ui-layout": { "tags": [] },
-    "shared-data": { "tags": [] },
-    "shared-utils": { "tags": [] },
-    "category-data": { "tags": [] },
-    "category-api": { "tags": [] },
-    "auth-api": { "tags": [] },
-    "auth-feature": { "tags": [] },
-    "auth-util": { "tags": [] },
-    "auth-data": { "tags": [] },
-    "home-feature": { "tags": [] },
-    "home-ui": { "tags": [] },
-    "maps-util": { "tags": [] },
-    "groups-api": { "tags": [] },
-    "groups-feature": { "tags": [] },
-    "groups-ui": { "tags": [] },
-    "groups-data": { "tags": [] },
-    "personal-feature": { "tags": [] },
-    "home-data": { "tags": [] },
-    "home-api": { "tags": [] },
-    "shared-environment": { "tags": [] },
-    "shared-api": { "tags": [] },
-    "shared-state": { "tags": [] },
-    "features-camera": { "tags": [] },
-    "groups-utils": { "tags": [] },
-    "features-notification": { "tags": [] },
-    "profile-feature": { "tags": [] },
-    "profile-util": { "tags": [] },
-    "profile-data": { "tags": [] },
-    "profile-api": { "tags": [] },
-    "personal-api": { "tags": [] },
-    "personal-data": { "tags": [] },
-    "gatherr-ui": { "tags": [] },
-    "gatherr-ui-e2e": { "tags": [], "implicitDependencies": ["gatherr-ui"] }
+    "gatherr": {
+      "tags": ["app"]
+    },
+    "gatherr-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gatherr"]
+    },
+    "auth-feature": {
+      "tags": ["app-feature"]
+    },
+    "groups-feature": {
+      "tags": ["app-feature"]
+    },
+    "home-feature": {
+      "tags": ["app-feature"]
+    },
+    "personal-feature": {
+      "tags": ["app-feature"]
+    },
+    "profile-feature": {
+      "tags": ["app-feature"]
+    },
+
+    "shared-ui-common": {
+      "tags": []
+    },
+    "shared-ui-layout": {
+      "tags": []
+    },
+    "shared-data": {
+      "tags": []
+    },
+    "shared-utils": {
+      "tags": []
+    },
+    "category-data": {
+      "tags": []
+    },
+    "category-api": {
+      "tags": []
+    },
+    "auth-api": {
+      "tags": []
+    },
+    "auth-util": {
+      "tags": []
+    },
+    "auth-data": {
+      "tags": []
+    },
+    "home-ui": {
+      "tags": []
+    },
+    "maps-util": {
+      "tags": []
+    },
+    "groups-api": {
+      "tags": []
+    },
+
+    "groups-ui": {
+      "tags": []
+    },
+    "groups-data": {
+      "tags": []
+    },
+
+    "home-data": {
+      "tags": []
+    },
+    "home-api": {
+      "tags": []
+    },
+    "shared-environment": {
+      "tags": []
+    },
+    "shared-api": {
+      "tags": []
+    },
+    "shared-state": {
+      "tags": []
+    },
+    "shared-camera": {
+      "tags": []
+    },
+    "groups-utils": {
+      "tags": []
+    },
+    "shared-notification": {
+      "tags": []
+    },
+
+    "profile-util": {
+      "tags": []
+    },
+    "profile-data": {
+      "tags": []
+    },
+    "profile-api": {
+      "tags": []
+    },
+    "personal-api": {
+      "tags": []
+    },
+    "personal-data": {
+      "tags": []
+    },
+    "gatherr-ui": {
+      "tags": []
+    },
+    "gatherr-ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["gatherr-ui"]
+    }
   }
 }
