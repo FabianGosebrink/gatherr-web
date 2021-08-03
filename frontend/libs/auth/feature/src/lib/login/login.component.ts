@@ -10,9 +10,11 @@ import { login } from '@workspace/auth/data';
 export class LoginComponent implements OnInit {
   constructor(private store: Store<any>) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.store.dispatch(login());
+  }
 
   login() {
-    this.store.dispatch(login());
+
   }
 }

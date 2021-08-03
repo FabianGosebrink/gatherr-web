@@ -35,7 +35,7 @@ namespace Gatherr.Api
             host.Run();
         }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>œ
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
              Host.CreateDefaultBuilder(args)
                  .ConfigureWebHostDefaults(webBuilder =>
                      webBuilder.ConfigureAppConfiguration(config =>
