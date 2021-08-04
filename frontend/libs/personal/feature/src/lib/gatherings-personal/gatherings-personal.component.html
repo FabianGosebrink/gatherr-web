@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="same-row mb-20">
+    <button mat-raised-button (click)="location.back()">
+      <mat-icon>west</mat-icon>Back
+    </button>
+  </div>
+
+  <h1 class="mt-3">Your Gatherings</h1>
+
+  <mat-progress-bar
+    *ngIf="loading$ | async; else list"
+    mode="indeterminate"
+  ></mat-progress-bar>
+
+  <ng-template #list>
+    <workspace-gathering-list
+      [items]="items$ | async"
+    ></workspace-gathering-list>
+  </ng-template>
+</div>
