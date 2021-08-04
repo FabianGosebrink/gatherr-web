@@ -28,6 +28,24 @@
     }
   },
   "projects": {
+    "auth-api": {
+      "tags": []
+    },
+    "auth-data": {
+      "tags": []
+    },
+    "auth-feature": {
+      "tags": ["app-feature"]
+    },
+    "auth-util": {
+      "tags": []
+    },
+    "category-api": {
+      "tags": []
+    },
+    "category-data": {
+      "tags": []
+    },
     "gatherr": {
       "tags": ["app"]
     },
@@ -35,48 +53,29 @@
       "tags": [],
       "implicitDependencies": ["gatherr"]
     },
-    "auth-feature": {
-      "tags": ["app-feature"]
+    "groups-api": {
+      "tags": []
+    },
+    "groups-data": {
+      "tags": []
     },
     "groups-feature": {
       "tags": ["app-feature"]
     },
+    "groups-ui": {
+      "tags": []
+    },
+    "groups-utils": {
+      "tags": []
+    },
+    "home-api": {
+      "tags": []
+    },
+    "home-data": {
+      "tags": []
+    },
     "home-feature": {
       "tags": ["app-feature"]
-    },
-    "personal-feature": {
-      "tags": ["app-feature"]
-    },
-    "profile-feature": {
-      "tags": ["app-feature"]
-    },
-
-    "shared-ui-common": {
-      "tags": []
-    },
-    "shared-ui-layout": {
-      "tags": []
-    },
-    "shared-data": {
-      "tags": []
-    },
-    "shared-utils": {
-      "tags": []
-    },
-    "category-data": {
-      "tags": []
-    },
-    "category-api": {
-      "tags": []
-    },
-    "auth-api": {
-      "tags": []
-    },
-    "auth-util": {
-      "tags": []
-    },
-    "auth-data": {
-      "tags": []
     },
     "home-ui": {
       "tags": []
@@ -84,56 +83,61 @@
     "maps-util": {
       "tags": []
     },
-    "groups-api": {
-      "tags": []
-    },
-
-    "groups-ui": {
-      "tags": []
-    },
-    "groups-data": {
-      "tags": []
-    },
-
-    "home-data": {
-      "tags": []
-    },
-    "home-api": {
-      "tags": []
-    },
-    "shared-environment": {
-      "tags": []
-    },
-    "shared-api": {
-      "tags": []
-    },
-    "shared-state": {
-      "tags": []
-    },
-    "shared-camera": {
-      "tags": []
-    },
-    "groups-utils": {
-      "tags": []
-    },
-    "shared-notification": {
-      "tags": []
-    },
-
-    "profile-util": {
-      "tags": []
-    },
-    "profile-data": {
-      "tags": []
-    },
-    "profile-api": {
-      "tags": []
-    },
     "personal-api": {
       "tags": []
     },
     "personal-data": {
       "tags": []
+    },
+    "personal-feature": {
+      "tags": ["app-feature"]
+    },
+    "profile-api": {
+      "tags": []
+    },
+    "profile-data": {
+      "tags": []
+    },
+    "profile-feature": {
+      "tags": ["app-feature"]
+    },
+    "profile-util": {
+      "tags": []
+    },
+    "shared-api": {
+      "tags": []
+    },
+    "shared-camera": {
+      "tags": []
+    },
+    "shared-data": {
+      "tags": []
+    },
+    "shared-environment": {
+      "tags": []
+    },
+    "shared-notification": {
+      "tags": []
+    },
+    "shared-state": {
+      "tags": []
+    },
+    "shared-ui-common": {
+      "tags": []
+    },
+    "shared-ui-layout": {
+      "tags": []
+    },
+    "shared-utils": {
+      "tags": []
     }
+  },
+  "targetDependencies": {
+    "build": [
+      {
+        "target": "build",
+        "projects": "dependencies"
+      }
+    ]
   }
 }

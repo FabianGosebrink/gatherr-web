@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthModule } from '@auth0/auth0-angular';
 import { EffectsModule } from '@ngrx/effects';
 import {
   DefaultRouterStateSerializer,
@@ -19,6 +18,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { allMainEffects, appReducers } from './store/app-state';
 import { TranslocoRootModule } from './transloco/transloco-root.module';
+import { AuthConfigModule } from './auth/auth-config.module';
 export function windowFactory() {
   return window;
 }
@@ -53,16 +53,6 @@ export function windowFactory() {
       logOnly: environment.production,
     }),
 
-    AuthModule.forRoot({
-      domain: 'pzpwrcg.auth0.com',
-      clientId: 'ZxIBGbU2vtmLJEQ9YPKiKII4Qv1ZaarP',
-      audience: 'https://localhost:5001',
-      redirectUri: window.location.origin,
-      httpInterceptor: {
-        allowedList: [`https://localhost:5001/*`],
-      },
-    }),
-
     SharedEnvironmentModule.forRoot({
       apiUrl: environment.server + environment.api + environment.version,
       serverUrl: environment.server,
@@ -71,6 +61,7 @@ export function windowFactory() {
     SharedStateModule,
 
     TranslocoRootModule,
+      AuthConfigModule,
   ],
   bootstrap: [AppComponent],
   providers: [{ provide: 'Window', useFactory: windowFactory }],

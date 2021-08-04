@@ -1,5 +1,8 @@
+const { getJestProjects } = require('@nrwl/jest');
+
 module.exports = {
   projects: [
+    ...getJestProjects(),
     '<rootDir>/apps/gatherr',
     '<rootDir>/libs/shared/ui-common',
     '<rootDir>/libs/shared/ui-layout',
