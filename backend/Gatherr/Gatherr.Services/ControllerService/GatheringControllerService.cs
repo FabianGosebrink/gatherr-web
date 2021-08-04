@@ -25,7 +25,7 @@ namespace Gatherr.Services.ControllerService
             IGatheringRepository gatheringRepository,
             IGroupsRepository groupsRepository,
             IHateOasHelper hateOasHelper,
-            GatheringMemberRepository gatheringMemberRepository,
+            IGatheringMemberRepository gatheringMemberRepository,
             IMapper mapper)
         {
             _gatheringRepository = gatheringRepository;
