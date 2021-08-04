@@ -11,7 +11,7 @@ namespace Gatherr.Services.Mappings
             CreateMap<GatheringMemberEntity, GatheringMemberDto>()
                .ForMember(dest => dest.MemberId, o => o.MapFrom(src => src.UserProfileId))
               .ForMember(dest => dest.UserProfile, o => o.MapFrom(src => src.UserProfile))
-              .ForMember(dest => dest.MeetupId, o => o.MapFrom(src => src.MeetupId))
+              .ForMember(dest => dest.GatheringId, o => o.MapFrom(src => src.GatheringId))
               .ForMember(dest => dest.Role, o => o.MapFrom(src => src.Role)
               ).ReverseMap();
         }

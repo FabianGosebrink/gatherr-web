@@ -13,25 +13,25 @@ namespace Gatherr.Services.ControllerService
         private readonly IEmailService _emailService;
 
         private readonly IGroupMemberRepository _groupMemberRepository;
-        private readonly IGatheringMemberRepository _meetupMemberRepository;
+        private readonly IGatheringMemberRepository _gatheringMemberRepository;
 
         public ContactMembersControllerService(
             IGroupMemberRepository groupMemberRepository,
-            IGatheringMemberRepository meetupMemberRepository, 
+            IGatheringMemberRepository gatheringMemberRepository, 
             IEmailService emailService)
         {
             _emailService = emailService;
             _groupMemberRepository = groupMemberRepository;
-            _meetupMemberRepository = meetupMemberRepository;
+            _gatheringMemberRepository = gatheringMemberRepository;
         }
 
         public async Task<bool> ContactGatheringAsync(ContactGatheringDto contactGatheringDto)
         {
-            IQueryable<GatheringMemberEntity> meetupMembers = _meetupMemberRepository
-                .GetAll(predicate: x => x.MeetupId == contactGatheringDto.GatheringId, 
+            IQueryable<GatheringMemberEntity> gatheringMembers = _gatheringMemberRepository
+                .GetAll(predicate: x => x.GatheringId == contactGatheringDto.GatheringId, 
                     include: source => source.Include(y => y.UserProfile));
 
-            var emails = meetupMembers.Select(x => x.UserProfile.UserIdentifier).ToList();
+            var emails = gatheringMembers.Select(x => x.UserProfile.UserIdentifier).ToList();
 
             var success = await _emailService.SendEmailAsync(emails, contactGatheringDto.Subject, contactGatheringDto.Message);
 

@@ -12,6 +12,6 @@ namespace Gatherr.Models.Dtos.Member
         public UserProfileDto UserProfile { get; set; }
         public DateTime Modified { get; set; }
 
-        public Guid MeetupId { get; set; }
+        public Guid GatheringId { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace Gatherr.Services.ControllerService
     {
         private readonly IGatheringRepository _gatheringRepository;
         private readonly IGroupsRepository _groupsRepository;
-        private readonly IGatheringMemberRepository _meetupMemberRepository;
+        private readonly IGatheringMemberRepository _gatheringMemberRepository;
         private readonly IHateOasHelper _hateOasHelper;
         private readonly IMapper _mapper;
 
@@ -25,13 +25,13 @@ namespace Gatherr.Services.ControllerService
             IGatheringRepository gatheringRepository,
             IGroupsRepository groupsRepository,
             IHateOasHelper hateOasHelper,
-            GatheringMemberRepository meetupMemberRepository,
+            GatheringMemberRepository gatheringMemberRepository,
             IMapper mapper)
         {
             _gatheringRepository = gatheringRepository;
             _groupsRepository = groupsRepository;
             _hateOasHelper = hateOasHelper;
-            _meetupMemberRepository = meetupMemberRepository;
+            _gatheringMemberRepository = gatheringMemberRepository;
             _mapper = mapper;
         }
 
@@ -59,61 +59,61 @@ namespace Gatherr.Services.ControllerService
                 item.Gatherings = item.Gatherings.OrderBy(x => x.Date).ToList();
             }
 
-            var meetupDtos = _mapper.Map<List<GatheringDto>>(item.Gatherings);
+            var gatheringDtos = _mapper.Map<List<GatheringDto>>(item.Gatherings);
 
             return new ObjectDescriptor<List<GatheringDto>>()
             {
-                Value = meetupDtos,
+                Value = gatheringDtos,
             };
         }
 
-        public IObjectDescriptor<List<GatheringDto>> GetGatheringsInArea(GatheringsFilterDto meetupsFilterDto)
+        public IObjectDescriptor<List<GatheringDto>> GetGatheringsInArea(GatheringsFilterDto gatheringsFilterDto)
         {
             ParameterExpression argument = Expression.Parameter(typeof(GatheringEntity), "x");
             Expression cityProperty = Expression.Property(argument, "City");
             Expression titleProperty = Expression.Property(argument, "Title");
             Expression countryProperty = Expression.Property(argument, "Country");
 
-            var countryvalue = Expression.Constant(meetupsFilterDto.Country);
+            var countryvalue = Expression.Constant(gatheringsFilterDto.Country);
             var countryEpression = Expression.Equal(countryProperty, countryvalue);
             var expression = countryEpression;
 
-            if (!String.IsNullOrWhiteSpace(meetupsFilterDto.City))
+            if (!String.IsNullOrWhiteSpace(gatheringsFilterDto.City))
             {
-                var cityValue = Expression.Constant(meetupsFilterDto.City);
+                var cityValue = Expression.Constant(gatheringsFilterDto.City);
                 var cityExpression = Expression.Equal(cityProperty, cityValue);
                 expression = Expression.AndAlso(expression, cityExpression);
             }
 
-            if (!String.IsNullOrWhiteSpace(meetupsFilterDto.Type) && meetupsFilterDto.Type != "*")
+            if (!String.IsNullOrWhiteSpace(gatheringsFilterDto.Type) && gatheringsFilterDto.Type != "*")
             {
-                var titleValue = Expression.Constant(meetupsFilterDto.Type);
+                var titleValue = Expression.Constant(gatheringsFilterDto.Type);
                 var titleExpression = Expression.Equal(titleProperty, titleValue);
                 expression = Expression.AndAlso(expression, titleExpression);
             }
 
             var dbFilter = Expression.Lambda<Func<GatheringEntity, bool>>(expression, argument);
 
-            IQueryable<GatheringEntity> meetups = _gatheringRepository.GetAll(
+            IQueryable<GatheringEntity> gatherings = _gatheringRepository.GetAll(
                 predicate: dbFilter,
                include: source => source.Include(y => y.Group));
 
-            List<GatheringEntity> meetupsToReturn = meetups.Skip(meetupsFilterDto.Skip).Take(meetupsFilterDto.Take).ToList();
+            List<GatheringEntity> gatheringsToReturn = gatherings.Skip(gatheringsFilterDto.Skip).Take(gatheringsFilterDto.Take).ToList();
 
-            var meetupDtos = _mapper.Map<List<GatheringDto>>(meetupsToReturn);
+            var gatheringDtos = _mapper.Map<List<GatheringDto>>(gatheringsToReturn);
 
             return new ObjectDescriptor<List<GatheringDto>>()
             {
-                Value = meetupDtos,
+                Value = gatheringDtos,
             };
         }
 
         public IObjectDescriptor<List<GatheringDto>> GetAllPersonalGatherings(string currentUserName)
         {
-            List<GatheringMemberEntity> result = _meetupMemberRepository
-                .GetAll(x => x.UserProfile.UserIdentifier == currentUserName, source => source.Include(x => x.Meetup).ThenInclude(x => x.Group)).ToList();
+            List<GatheringMemberEntity> result = _gatheringMemberRepository
+                .GetAll(x => x.UserProfile.UserIdentifier == currentUserName, source => source.Include(x => x.Gathering).ThenInclude(x => x.Group)).ToList();
 
-            var mappedDtos = _mapper.Map<List<GatheringDto>>(result.Select(x => x.Meetup));
+            var mappedDtos = _mapper.Map<List<GatheringDto>>(result.Select(x => x.Gathering));
 
             mappedDtos.ForEach(x => _hateOasHelper.AddLinks<GatheringDto>(x, x.Id));
 
@@ -123,7 +123,7 @@ namespace Gatherr.Services.ControllerService
             };
         }
 
-        public IObjectDescriptor<GatheringDto> GetSingle(string groupLinkName, string meetupLinkName)
+        public IObjectDescriptor<GatheringDto> GetSingle(string groupLinkName, string gatheringLinkName)
         {
             GroupEntity existingGroup = _groupsRepository.GetSingle(predicate: x => x.LinkName == groupLinkName);
 
@@ -133,7 +133,7 @@ namespace Gatherr.Services.ControllerService
             }
 
             GatheringEntity item = _gatheringRepository
-                .GetSingle(x => x.LinkName == meetupLinkName,
+                .GetSingle(x => x.LinkName == gatheringLinkName,
                 include: source => source
                     .Include(a => a.Group)
                     .Include(a => a.Attendees)
@@ -196,26 +196,26 @@ namespace Gatherr.Services.ControllerService
                 return null;
             }
 
-            var meetupEntity = _mapper.Map<GatheringEntity>(createDto);
-            meetupEntity.Created = DateTime.UtcNow;
-            meetupEntity.Date = meetupEntity.Date.ToUniversalTime();
-            meetupEntity.GroupId = existingGroup.Id;
-            meetupEntity.LinkName = meetupEntity.Title.Replace(" ", "-").ToLowerInvariant();
-            meetupEntity.LinkName = meetupEntity.LinkName + "-" + GetRandomString(5);
-            meetupEntity.State = GatheringState.Ok;
+            var gatheringEntity = _mapper.Map<GatheringEntity>(createDto);
+            gatheringEntity.Created = DateTime.UtcNow;
+            gatheringEntity.Date = gatheringEntity.Date.ToUniversalTime();
+            gatheringEntity.GroupId = existingGroup.Id;
+            gatheringEntity.LinkName = gatheringEntity.Title.Replace(" ", "-").ToLowerInvariant();
+            gatheringEntity.LinkName = gatheringEntity.LinkName + "-" + GetRandomString(5);
+            gatheringEntity.State = GatheringState.Ok;
 
-            meetupEntity.Attendees = new List<GatheringMemberEntity>();
+            gatheringEntity.Attendees = new List<GatheringMemberEntity>();
             GroupMemberEntity currentCreator = existingGroup.GroupMembers
                 .FirstOrDefault(groupMember => groupMember.UserProfile.UserIdentifier == currentUserName);
 
-            meetupEntity.Attendees.Add(new GatheringMemberEntity()
+            gatheringEntity.Attendees.Add(new GatheringMemberEntity()
             {
                 UserProfileId = currentCreator.UserProfileId,
                 Role = GatheringRole.Organiser,
                 Modified = DateTime.UtcNow
             });
 
-            existingGroup.Gatherings.Add(meetupEntity);
+            existingGroup.Gatherings.Add(gatheringEntity);
 
             if (_gatheringRepository.Save() <= 0)
             {
@@ -224,7 +224,7 @@ namespace Gatherr.Services.ControllerService
 
             return new ObjectDescriptor<GatheringDto>()
             {
-                Value = _mapper.Map<GatheringDto>(meetupEntity),
+                Value = _mapper.Map<GatheringDto>(gatheringEntity),
             };
         }
 

@@ -34,7 +34,7 @@ namespace Gatherr.Api.Controllers.v1
             return Ok(new { path = toReturn });
         }
 
-        [HttpPost("meetup"), DisableRequestSizeLimit]
+        [HttpPost("gathering"), DisableRequestSizeLimit]
         public async Task<ActionResult> UploadGatheringPicture()
         {
             IFormFile file = Request.Form.Files[0];

@@ -190,8 +190,8 @@ namespace Gatherr.Api
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<GroupsHub>("/groupshub");
-                endpoints.MapHub<GatheringsHub>("/meetupshub");
-                endpoints.MapHub<GatheringMembersHub>("/meetupmembershub");
+                endpoints.MapHub<GatheringsHub>("/gatheringshub");
+                endpoints.MapHub<GatheringMembersHub>("/gatheringmembershub");
                 endpoints.MapHub<GroupMembersHub>("/groupmembershub");
             });
 

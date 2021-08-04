@@ -19,7 +19,7 @@ namespace Gatherr.Api.Controllers.v1
         }
 
         [HttpGet]
-        [Route("meetups", Name = nameof(GetAllGatheringRoles))]
+        [Route("gatherings", Name = nameof(GetAllGatheringRoles))]
         public ActionResult GetAllGatheringRoles()
         {
             return Ok(Enum.GetValues(typeof(GatheringRole)));

@@ -12,16 +12,16 @@ namespace Gatherr.Api.Controllers.v1
     public class PersonalController : ControllerBase
     {
         private readonly IGroupsControllerService _groupsControllerService;
-        private readonly IGatheringControllerService _meetupControllerService;
+        private readonly IGatheringControllerService _gatheringControllerService;
         private readonly IUserIdentityControllerService _userIdentityControllerService;
 
         public PersonalController(
             IGroupsControllerService groupsControllerService,
-            IGatheringControllerService meetupControllerService,
+            IGatheringControllerService gatheringControllerService,
             IUserIdentityControllerService userIdentityControllerService)
         {
             _groupsControllerService = groupsControllerService.WithController("Groups");
-            _meetupControllerService = meetupControllerService.WithController("Gatherings");
+            _gatheringControllerService = gatheringControllerService.WithController("Gatherings");
             _userIdentityControllerService = userIdentityControllerService;
         }
 
@@ -43,12 +43,12 @@ namespace Gatherr.Api.Controllers.v1
         }
 
         [HttpGet]
-        [Route("meetups", Name = nameof(GetAllPersonalGatherings))]
+        [Route("gatherings", Name = nameof(GetAllPersonalGatherings))]
         public ActionResult GetAllPersonalGatherings()
         {
             var currentUserIdentifier = _userIdentityControllerService.GetCurrentUsersIdentifier(User);
 
-            var result = _meetupControllerService.GetAllPersonalGatherings(currentUserIdentifier);
+            var result = _gatheringControllerService.GetAllPersonalGatherings(currentUserIdentifier);
 
             if (result == null)
             {

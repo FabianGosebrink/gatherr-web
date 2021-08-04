@@ -11,7 +11,7 @@ namespace Gatherr.Data.Context
 
         }
 
-        public DbSet<GatheringEntity> Meetups { get; set; }
+        public DbSet<GatheringEntity> Gatherings { get; set; }
         public DbSet<GroupEntity> Groups { get; set; }
         public DbSet<CategoryEntity> Categories { get; set; }
         public DbSet<UserProfileEntity> UserProfiles { get; set; }
@@ -49,16 +49,16 @@ namespace Gatherr.Data.Context
 
 
             modelBuilder.Entity <GatheringMemberEntity>()
-               .HasKey(bc => new { bc.MeetupId, bc.UserProfileId });
+               .HasKey(bc => new { bc.GatheringId, bc.UserProfileId });
 
             modelBuilder.Entity<GatheringMemberEntity>()
-                .HasOne(bc => bc.Meetup)
+                .HasOne(bc => bc.Gathering)
                 .WithMany(b => b.Attendees)
-                .HasForeignKey(bc => bc.MeetupId);
+                .HasForeignKey(bc => bc.GatheringId);
 
             modelBuilder.Entity<GatheringMemberEntity>()
                 .HasOne(bc => bc.UserProfile)
-                .WithMany(c => c.Meetups)
+                .WithMany(c => c.Gatherings)
                 .HasForeignKey(bc => bc.UserProfileId);
         }
     }

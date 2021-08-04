@@ -12,6 +12,6 @@ namespace Gatherr.Models.Entities
         public string ImageUrl { get; set; }
 
         public List<GroupMemberEntity> Groups { get; set; }
-        public List<GatheringMemberEntity> Meetups { get; set; }
+        public List<GatheringMemberEntity> Gatherings { get; set; }
     }
 }

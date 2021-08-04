@@ -10,11 +10,11 @@ namespace Gatherr.Services.ControllerService
     {
         IObjectDescriptor<List<GatheringDto>> GetAllGatheringsFromGroup(string groupLinkName);
         IObjectDescriptor<List<GatheringDto>> GetAllPersonalGatherings(string username);
-        IObjectDescriptor<GatheringDto> GetSingle(string groupLinkName, string meetupLinkName);
+        IObjectDescriptor<GatheringDto> GetSingle(string groupLinkName, string gatheringLinkName);
         IObjectDescriptor<object> Remove(Guid id);
         IObjectDescriptor<GatheringDto> Update(Guid id, GatheringUpdateDto updateDto);
         IGatheringControllerService WithController(string controllerName);
         IObjectDescriptor<GatheringDto> AddGatheringToGroup(string existingGroupId, GatheringCreateDto createDto, string currentUsername);
-        IObjectDescriptor<List<GatheringDto>> GetGatheringsInArea(GatheringsFilterDto meetupLocationDto);
+        IObjectDescriptor<List<GatheringDto>> GetGatheringsInArea(GatheringsFilterDto gatheringsFilterDto);
     }
 }
