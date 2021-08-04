@@ -15,8 +15,21 @@
       {{ lang }}
     </button>
   </div>
-  <button mat-stroked-button (click)="doLogin()" *ngIf="!loggedIn">
+  <button
+    mat-stroked-button
+    (click)="doLogin()"
+    class="mr-20"
+    *ngIf="!loggedIn"
+  >
     Login
+  </button>
+  <button
+    mat-stroked-button
+    [routerLink]="['groups']"
+    class="mr-20"
+    *ngIf="!loggedIn"
+  >
+    {{ 'groups' | transloco }}
   </button>
   <button
     mat-stroked-button
@@ -24,7 +37,7 @@
     *ngIf="loggedIn"
     class="mr-20"
   >
-    Create Group
+    {{ 'create-a-group' | transloco }}
   </button>
   <button
     *ngIf="loggedIn"
@@ -36,14 +49,11 @@
     <img [src]="userProfile?.imageUrl || userPicture" class="profile-picture" />
   </button>
 
-  <button mat-icon-button [mat-menu-trigger-for]="menu">
+  <button mat-icon-button [mat-menu-trigger-for]="menu" *ngIf="loggedIn">
     <mat-icon class="dark-icon">more_vert</mat-icon>
   </button>
 </mat-toolbar>
 <mat-menu x-position="before" #menu="matMenu">
-  <button mat-menu-item [routerLink]="['groups']" *ngIf="!loggedIn">
-    {{ 'groups' | transloco }}
-  </button>
   <div *ngIf="loggedIn">
     <button mat-menu-item [routerLink]="['groups']">
       {{ 'groups' | transloco }}

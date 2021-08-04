@@ -51,7 +51,13 @@
       "@workspace/shared/ui-common": ["libs/shared/ui-common/src/index.ts"],
       "@workspace/shared/ui-layout": ["libs/shared/ui-layout/src/index.ts"],
       "@workspace/shared/utils": ["libs/shared/utils/src/index.ts"],
-      "@workspace/tools/testing": ["tools/testing/index.ts"]
+      "@workspace/tools/testing": ["tools/testing/index.ts"],
+      "rxjs": [
+        "node_modules/rxjs"
+      ],
+      "rxjs/*": [
+        "node_modules/rxjs/*"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

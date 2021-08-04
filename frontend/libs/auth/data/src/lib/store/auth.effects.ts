@@ -25,10 +25,10 @@ export class AuthEffects {
   checkAuth$ = createEffect(() =>
     this.actions$.pipe(
       ofType(fromAuthActions.checkAuth),
-      switchMap(() => this.authService.isLoggedIn$),
-      switchMap((isLoggedIn) => {
-        if (isLoggedIn) {
-          return of(fromAuthActions.loginComplete({ isLoggedIn }));
+      switchMap(() => this.authService.checkAuth()),
+      switchMap(({isAuthenticated}) => {
+        if (isAuthenticated) {
+          return of(fromAuthActions.loginComplete({ isLoggedIn: isAuthenticated}));
         }
 
         return of(fromAuthActions.logoutComplete());
@@ -41,8 +41,8 @@ export class AuthEffects {
       ofType(fromAuthActions.loginComplete),
       switchMap(() => this.authService.user$),
       take(1),
-      switchMap((profile) => {
-        const { sub, name, picture } = profile;
+      switchMap(({userData}) => {
+        const { sub, name, picture } = userData;
         return [
           addSharedProfile({
             payload: {
@@ -51,7 +51,7 @@ export class AuthEffects {
               imageUrl: picture,
             },
           }),
-          fromAuthActions.setProfile({ profile }),
+          fromAuthActions.setProfile({ profile: userData }),
         ];
       })
     )
