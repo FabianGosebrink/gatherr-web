@@ -5,7 +5,7 @@ import { TranslocoModule } from '@ngneat/transloco';
 import { SharedUiCommonModule } from '@workspace/shared/ui-common';
 import { SharedUiLayoutModule } from '@workspace/shared/ui-layout';
 import { HeaderComponent } from './header/header.component';
-import { LocalMeetupListComponent } from './local-meetup-list/local-meetup-list.component';
+import { LocalGatheringListComponent } from './local-gathering-list/local-gathering-list.component';
 import { TypeWriterComponent } from './type-writer/type-writer.component';
 
 @NgModule({
@@ -19,8 +19,8 @@ import { TypeWriterComponent } from './type-writer/type-writer.component';
   declarations: [
     HeaderComponent,
     TypeWriterComponent,
-    LocalMeetupListComponent,
+    LocalGatheringListComponent,
   ],
-  exports: [HeaderComponent, TypeWriterComponent, LocalMeetupListComponent],
+  exports: [HeaderComponent, TypeWriterComponent, LocalGatheringListComponent],
 })
 export class HomeUiModule {}

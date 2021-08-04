@@ -1,27 +1,30 @@
 import { ActionReducerMap } from '@ngrx/store';
+import { GatheringsSignalREffects } from './gatherings/gathering.signalr.effects';
+import { GatheringEffects } from './gatherings/gatherings.effects';
+import {
+  gatheringReducer,
+  ReducerGatheringState,
+} from './gatherings/gatherings.reducer';
 import { GroupSignalREffects } from './groups/groups-signalr.effects';
 import { GroupEffects } from './groups/groups.effects';
 import { groupReducer, ReducerGroupState } from './groups/groups.reducer';
-import { MeetupsSignalREffects } from './meetups/meetup.signalr.effects';
-import { MeetupEffects } from './meetups/meetups.effects';
-import { meetupReducer, ReducerMeetupState } from './meetups/meetups.reducer';
 
+export * from './gatherings';
 export * from './groups';
-export * from './meetups';
 
 export interface GroupState {
   groups: ReducerGroupState;
-  meetups: ReducerMeetupState;
+  gatherings: ReducerGatheringState;
 }
 
 export const groupReducers: ActionReducerMap<GroupState> = {
   groups: groupReducer,
-  meetups: meetupReducer,
+  gatherings: gatheringReducer,
 };
 
 export const allGroupEffects = [
   GroupEffects,
   GroupSignalREffects,
-  MeetupEffects,
-  MeetupsSignalREffects,
+  GatheringEffects,
+  GatheringsSignalREffects,
 ];

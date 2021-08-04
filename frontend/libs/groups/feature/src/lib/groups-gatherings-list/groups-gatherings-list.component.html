@@ -1,0 +1,14 @@
+<div class="container">
+  <h1 class="mt-3">All Gatherings of the Group</h1>
+
+  <mat-progress-bar
+    *ngIf="loading$ | async; else list"
+    mode="indeterminate"
+  ></mat-progress-bar>
+
+  <ng-template #list>
+    <workspace-gathering-list
+      [items]="items$ | async"
+    ></workspace-gathering-list>
+  </ng-template>
+</div>

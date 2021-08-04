@@ -9,17 +9,22 @@ export const selectHomeState = createSelector(
   (state: fromReducer.HomeState) => state.home
 );
 
-export const selectAllLocalMeetups = createSelector(
+export const selectAllLocalGatherings = createSelector(
   selectHomeState,
   (state: fromReducer.HomeReducerState, props) => {
-    const result = Object.keys(state.meetups).map((id) => state.meetups[id]);
+    const result = Object.keys(state.gatherings).map(
+      (id) => state.gatherings[id]
+    );
     // const toReturn = [];
 
     // for (let index = 0; index < 10; index++) {
     //   toReturn.push(result[0]);
     // }
 
-    return result.slice(0, props?.count || Object.keys(state.meetups).length);
+    return result.slice(
+      0,
+      props?.count || Object.keys(state.gatherings).length
+    );
   }
 );
 
@@ -28,9 +33,9 @@ export const selectCurrentPlace = createSelector(
   (state: fromReducer.HomeReducerState) => state.currentPlace
 );
 
-export const selectAllLocalMeetupsCount = createSelector(
+export const selectAllLocalGatheringsCount = createSelector(
   selectHomeState,
-  (state: fromReducer.HomeReducerState) => Object.keys(state.meetups).length
+  (state: fromReducer.HomeReducerState) => Object.keys(state.gatherings).length
 );
 
 export const selectIsLoading = createSelector(

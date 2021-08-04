@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { PersonalApiService } from '@workspace/personal/api';
+import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { of } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import * as personalActions from './personal.actions';
@@ -30,13 +30,13 @@ export class PersonalEffects {
     )
   );
 
-  getAllPersonalMeetups$ = createEffect(() =>
+  getAllPersonalGatherings$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(personalActions.getAllPersonalMeetups),
+      ofType(personalActions.getAllPersonalGatherings),
       switchMap((action) =>
-        this.apiService.getAllPersonalMeetups().pipe(
+        this.apiService.getAllPersonalGatherings().pipe(
           map((result) =>
-            personalActions.getAllPersonalMeetupsSuccess({ payload: result })
+            personalActions.getAllPersonalGatheringsSuccess({ payload: result })
           ),
           catchError((error) =>
             of(personalActions.personalError({ payload: error }))

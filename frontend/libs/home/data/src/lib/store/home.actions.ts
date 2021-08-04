@@ -1,5 +1,9 @@
 import { createAction, props } from '@ngrx/store';
-import { MeetupFilter, ModelDescriptor, Place } from '@workspace/shared/data';
+import {
+  GatheringFilter,
+  ModelDescriptor,
+  Place,
+} from '@workspace/shared/data';
 
 const prefix = `[Home]`;
 
@@ -10,22 +14,22 @@ export const getCurrentPlaceComplete = createAction(
   props<{ payload: Place }>()
 );
 
-export const getLocalMeetups = createAction(
-  `${prefix} getLocalMeetups`,
-  props<{ payload: MeetupFilter }>()
+export const getLocalGatherings = createAction(
+  `${prefix} getLocalGatherings`,
+  props<{ payload: GatheringFilter }>()
 );
-export const getMoreLocalMeetups = createAction(
-  `${prefix} getMoreLocalMeetups`,
-  props<{ payload: MeetupFilter }>()
+export const getMoreLocalGatherings = createAction(
+  `${prefix} getMoreLocalGatherings`,
+  props<{ payload: GatheringFilter }>()
 );
 
-export const getLocalMeetupsComplete = createAction(
-  `${prefix} getLocalMeetupsComplete`,
+export const getLocalGatheringsComplete = createAction(
+  `${prefix} getLocalGatheringsComplete`,
   props<{ payload: ModelDescriptor<any[]> }>()
 );
 
-export const getMoreLocalMeetupsComplete = createAction(
-  `${prefix} getMoreLocalMeetupsComplete`,
+export const getMoreLocalGatheringsComplete = createAction(
+  `${prefix} getMoreLocalGatheringsComplete`,
   props<{ payload: ModelDescriptor<any[]> }>()
 );
 

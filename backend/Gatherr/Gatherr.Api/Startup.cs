@@ -78,8 +78,8 @@ namespace Gatherr.Api
             services.AddScoped<IBlobService, BlobService>();
             services.AddScoped<IUploadControllerService, UploadControllerService>();
 
-            services.AddScoped<IMeetupRepository, MeetupRepository>();
-            services.AddScoped<IMeetupControllerService, MeetupControllerService>();
+            services.AddScoped<IGatheringRepository, GatheringRepository>();
+            services.AddScoped<IGatheringControllerService, GatheringControllerService>();
 
             services.AddScoped<IGroupsRepository, GroupsRepository>();
             services.AddScoped<IGroupsControllerService, GroupsControllerService>();
@@ -93,7 +93,7 @@ namespace Gatherr.Api
             services.AddScoped<IUserProfileRepository, UserProfileRepository>();
             services.AddScoped<IUserProfileControllerService, UserProfileControllerService>();
 
-            services.AddScoped<IMeetupMemberRepository, MeetupMemberRepository>();
+            services.AddScoped<IGatheringMemberRepository, GatheringMemberRepository>();
 
             services.AddScoped<IUserIdentityControllerService, UserIdentityControllerService>();
 
@@ -190,8 +190,8 @@ namespace Gatherr.Api
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<GroupsHub>("/groupshub");
-                endpoints.MapHub<MeetupsHub>("/meetupshub");
-                endpoints.MapHub<MeetupMembersHub>("/meetupmembershub");
+                endpoints.MapHub<GatheringsHub>("/gatheringshub");
+                endpoints.MapHub<GatheringMembersHub>("/gatheringmembershub");
                 endpoints.MapHub<GroupMembersHub>("/groupmembershub");
             });
 

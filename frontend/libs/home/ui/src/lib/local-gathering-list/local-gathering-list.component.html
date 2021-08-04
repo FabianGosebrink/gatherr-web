@@ -1,0 +1,18 @@
+<workspace-picture-list
+  [items]="localGatherings"
+  [headline]="'Events in ' + city"
+  (itemClicked)="
+    router.navigate([
+      '/groups',
+      $event.groupLinkName,
+      'gatherings',
+      $event.linkName
+    ])
+  "
+></workspace-picture-list>
+
+<ng-template #noGatherings
+  ><span>{{
+    'no-gatherings-found-in' | transloco: { city: city }
+  }}</span></ng-template
+>

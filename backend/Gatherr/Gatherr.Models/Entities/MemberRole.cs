@@ -8,7 +8,7 @@ namespace Gatherr.Models.Entities
         Member
     }
 
-    public enum MeetupRole
+    public enum GatheringRole
     {
         Admin,
         Organiser,

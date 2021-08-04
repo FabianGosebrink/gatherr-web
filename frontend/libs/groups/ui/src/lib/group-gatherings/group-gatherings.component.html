@@ -1,0 +1,84 @@
+<div class="mt-20 mb-20 gathering-list">
+  <div class="same-row">
+    <div>
+      <h1>Gatherings</h1>
+    </div>
+    <div *ngIf="loggedIn">
+      <button
+        mat-icon-button
+        [matMenuTriggerFor]="menu"
+        aria-label="Example icon-button with a menu"
+      >
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button
+          mat-menu-item
+          color="primary"
+          (click)="navigateToGatheringAdd()"
+          *ngIf="canAddNewGatherings"
+        >
+          <mat-icon>add</mat-icon>
+          Add Gathering
+        </button>
+        <button
+          mat-menu-item
+          color="primary"
+          [routerLink]="['gatherings']"
+          class="mr-30"
+        >
+          <mat-icon>list</mat-icon>
+          All Gatherings
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <mat-list class="pointer">
+    <mat-list-item
+      *ngIf="previousGathering"
+      (click)="navigateToGathering(previousGathering)"
+    >
+      <img
+        matListAvatar
+        src="https://source.unsplash.com/random/50x50"
+        alt="..."
+      />
+      <h3 matLine>{{ previousGathering.title }}</h3>
+      <p matLine>{{ previousGathering.description }}</p>
+      <p matLine class="demo-2">
+        {{ previousGathering.date | date: 'medium' }}
+      </p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item
+      *ngIf="upcomingGathering"
+      (click)="navigateToGathering(upcomingGathering)"
+    >
+      <img
+        matListAvatar
+        src="https://source.unsplash.com/random/50x50"
+        alt="..."
+      />
+      <h3 matLine>{{ upcomingGathering.title }}</h3>
+      <p matLine>{{ upcomingGathering.description }}</p>
+      <p matLine class="demo-2">
+        {{ upcomingGathering.date | date: 'medium' }}
+      </p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item
+      *ngIf="nextGathering"
+      (click)="navigateToGathering(nextGathering)"
+    >
+      <img
+        matListAvatar
+        src="https://source.unsplash.com/random/50x50"
+        alt="..."
+      />
+      <h3 matLine>{{ nextGathering.title }}</h3>
+      <p matLine>{{ nextGathering.description }}</p>
+      <p matLine class="demo-2">{{ nextGathering.date | date: 'medium' }}</p>
+    </mat-list-item>
+  </mat-list>
+</div>

@@ -9,7 +9,7 @@ export class UploadApiService {
     return this.http.post<{ path: string }>('upload/profile', formData);
   }
 
-  uploadMeetup(formData: FormData) {
+  uploadGathering(formData: FormData) {
     return this.http.post<{ path: string }>('upload/profile', formData);
   }
 

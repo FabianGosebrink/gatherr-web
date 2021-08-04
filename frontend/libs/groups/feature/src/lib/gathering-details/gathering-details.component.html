@@ -1,0 +1,215 @@
+<ng-template #loading *ngIf="isLoading$ | async">Loading...</ng-template>
+
+<div *ngIf="item$ | async as item">
+  <workspace-map
+    [lat]="item.latitude"
+    [lng]="item.longitude"
+    [heightInPx]="300"
+  ></workspace-map>
+
+  <div class="container">
+    <div class="same-row">
+      <div>
+        <button mat-raised-button (click)="navigateToGroup()">
+          <mat-icon>west</mat-icon>Back
+        </button>
+      </div>
+      <div>
+        <button
+          mat-raised-button
+          color="primary"
+          class="attend-button"
+          (click)="addCurrentUserToGathering()"
+          *ngIf="
+            !(isCurrentUserGatheringAttendee$ | async) && (isLoggedIn$ | async)
+          "
+        >
+          Attend now
+        </button>
+        <button
+          class="action-button"
+          mat-raised-button
+          color="primary"
+          [matMenuTriggerFor]="actions"
+          *ngIf="selectIsCurrentUserAttending$ | async"
+        >
+          <mat-icon>menu</mat-icon>
+          Actions
+        </button>
+
+        <mat-menu #actions="matMenu">
+          <button
+            class="dropdown-item"
+            type="button"
+            mat-menu-item
+            (click)="addCurrentUserToGathering()"
+            *ngIf="!(selectIsCurrentUserAttending$ | async)"
+          >
+            <mat-icon>person_add</mat-icon>
+            Attend Gathering
+          </button>
+          <a
+            mat-menu-item
+            *ngIf="isCurrentUserGatheringOrganiser$ | async"
+            [routerLink]="[
+              '/groups',
+              item.groupLinkName,
+              'gatherings',
+              item.linkName,
+              'edit'
+            ]"
+          >
+            <mat-icon>edit</mat-icon>
+            Edit Gathering
+          </a>
+          <button
+            mat-menu-item
+            type="button"
+            *ngIf="selectIsCurrentUserAttending$ | async"
+            [routerLink]="[
+              '/groups',
+              item.groupLinkName,
+              'gatherings',
+              item.linkName,
+              'leave'
+            ]"
+            [disabled]="(attendeesCount$ | async) === 1"
+          >
+            <mat-icon>person_remove</mat-icon>
+            Leave Gathering
+          </button>
+          <button
+            mat-menu-item
+            type="button"
+            *ngIf="isCurrentUserGatheringOrganiser$ | async"
+            [routerLink]="[
+              '/groups',
+              item.groupLinkName,
+              'gatherings',
+              item.linkName,
+              'cancel'
+            ]"
+          >
+            <mat-icon *ngIf="item?.state === 1">check</mat-icon>
+            <mat-icon *ngIf="item?.state === 0">cancel</mat-icon>
+            {{ item?.state === 1 ? 'Activate' : 'Cancel' }} Gathering
+          </button>
+
+          <button
+            mat-menu-item
+            *ngIf="isCurrentUserGatheringOrganiser$ | async"
+            type="button"
+            [routerLink]="[
+              '/groups',
+              item.groupLinkName,
+              'gatherings',
+              item.linkName,
+              'contact'
+            ]"
+          >
+            <mat-icon>local_post_office</mat-icon>
+            Contact attendees
+          </button>
+          <button
+            mat-menu-item
+            *ngIf="isCurrentUserGatheringOrganiser$ | async"
+            type="button"
+            [routerLink]="[
+              '/groups',
+              item.groupLinkName,
+              'gatherings',
+              item.linkName,
+              'members'
+            ]"
+          >
+            <mat-icon>edit</mat-icon>
+            Edit attendees
+          </button>
+        </mat-menu>
+      </div>
+    </div>
+    <div class="mt-20">
+      <mat-chip-list>
+        <mat-chip *ngIf="item?.state === 1" color="accent" selected
+          >Cancelled</mat-chip
+        >
+        <mat-chip
+          color="accent"
+          *ngIf="isCurrentUserGatheringOrganiser$ | async"
+          >Organizer</mat-chip
+        >
+        <mat-chip
+          color="primary"
+          *ngIf="isCurrentUserGatheringAttendee$ | async"
+          >Attending</mat-chip
+        >
+        <mat-chip *ngIf="isCurrentUserOnWaitingList$ | async"
+          >Waiting list</mat-chip
+        >
+      </mat-chip-list>
+    </div>
+
+    <div class="mt-20 red-box" *ngIf="item?.state === 1">
+      This gathering is cancelled
+    </div>
+
+    <div class="mt-20">
+      <h2>{{ item.title }}</h2>
+      <h5>
+        by
+        <a [routerLink]="['/groups', item.groupLinkName]">{{
+          item.groupName
+        }}</a>
+      </h5>
+    </div>
+
+    <div *ngIf="attendees$ | async as attendees">
+      <div class="mt-20">
+        <h4>
+          On
+          <strong>{{ item.date | date: 'medium' }}</strong> at
+          <strong>{{ address$ | async | formatAddress }}</strong>
+        </h4>
+      </div>
+
+      <div class="mt-20 mb-20">
+        <h2>Availability</h2>
+        <mat-progress-bar
+          mode="determinate"
+          [value]="widthExp$ | async"
+        ></mat-progress-bar>
+
+        {{ attendeesCount$ | async }} of {{ item.maxAttendees }} seats booked
+        ({{ widthExp$ | async }} %)
+      </div>
+
+      <div
+        style="
+          height: 200px;
+          width: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center;
+        "
+        [style.backgroundImage]="
+          'url(' +
+          (item?.imageUrl
+            ? item?.imageUrl
+            : 'https://source.unsplash.com/random/750x200') +
+          ')'
+        "
+      ></div>
+
+      <div class="mt-20">
+        <h2>Description</h2>
+        <p>{{ item.description }}</p>
+      </div>
+    </div>
+    <div class="mt-20 mb-20">
+      <workspace-members
+        [members]="allAttendees$ | async"
+        [title]="'Attendees'"
+      ></workspace-members>
+    </div>
+  </div>
+</div>

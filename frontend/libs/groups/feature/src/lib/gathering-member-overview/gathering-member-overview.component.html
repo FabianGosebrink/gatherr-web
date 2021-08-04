@@ -1,0 +1,24 @@
+<workspace-map
+  *ngIf="gathering$ | async as gathering"
+  [lat]="gathering.latitude"
+  [lng]="gathering.longitude"
+  [heightInPx]="300"
+></workspace-map>
+
+<div class="container">
+  <div class="same-row mb-20">
+    <button mat-raised-button (click)="location.back()">
+      <mat-icon>west</mat-icon>Back
+    </button>
+  </div>
+
+  <div class="mt-20">
+    <div class="mt-50">
+      <workspace-gathering-member-roles
+        [members]="members$ | async"
+        (memberRoleChanged)="changeRole($event)"
+        [allRoles]="allRoles$ | async"
+      ></workspace-gathering-member-roles>
+    </div>
+  </div>
+</div>

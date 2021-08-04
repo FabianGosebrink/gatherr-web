@@ -1,9 +1,9 @@
 {
-  "no-meetups-found-in": "Keine Meetups in {{city}} gefunden",
+  "no-gatherings-found-in": "Keine Treffen in {{city}} gefunden",
   "groups": "Gruppen",
   "create-a-group": "Gruppe erstellen",
   "my-groups": "Meine Gruppen",
-  "my-meetups": "Meine Meetups",
+  "my-gatherings": "Meine Treffen",
   "profile": "Profil",
   "find-me": "Finde"
 }

@@ -66,7 +66,7 @@ export const selectIsCurrentUserAdmin = createSelector(
   (member: GroupMember) => !!member && member.role === GroupRole.Admin
 );
 
-export const selectCanAddNewMeetups = createSelector(
+export const selectCanAddNewGatherings = createSelector(
   selectIsCurrentUserOrganiser,
   selectIsCurrentUserAdmin,
   (isOrganiser: boolean, isAdmin: boolean) => isOrganiser || isAdmin

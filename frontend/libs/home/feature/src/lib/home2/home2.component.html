@@ -16,12 +16,12 @@
       ></workspace-type-writer>
     </div>
 
-    <workspace-local-meetup-list
-      [localMeetups]="localMeetups$ | async"
+    <workspace-local-gathering-list
+      [localGatherings]="localGatherings$ | async"
       [isLoading]="isLoading$ | async"
       [city]="currentSearchingPlace?.city"
       (navigateTo)="navigateTo($event)"
-    ></workspace-local-meetup-list>
+    ></workspace-local-gathering-list>
   </div>
 </ng-container>
 

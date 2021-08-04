@@ -1,15 +1,15 @@
 import { ActionReducerMap, createReducer, on } from '@ngrx/store';
-import { Meetup, Place } from '@workspace/shared/data';
+import { Gathering, Place } from '@workspace/shared/data';
 import * as homeActions from './home.actions';
 
 export interface HomeReducerState {
-  meetups: { [id: string]: Meetup };
+  gatherings: { [id: string]: Gathering };
   currentPlace: Place;
   loading: boolean;
 }
 
 export const initialState: HomeReducerState = {
-  meetups: {},
+  gatherings: {},
   currentPlace: null,
   loading: false,
 };
@@ -17,7 +17,7 @@ export const initialState: HomeReducerState = {
 export const homeReducer = createReducer(
   initialState,
 
-  on(homeActions.getLocalMeetups, homeActions.getCurrentPlace, (state) => {
+  on(homeActions.getLocalGatherings, homeActions.getCurrentPlace, (state) => {
     return {
       ...state,
       loading: true,
@@ -39,32 +39,32 @@ export const homeReducer = createReducer(
     };
   }),
 
-  on(homeActions.getMoreLocalMeetupsComplete, (state, { payload }) => {
-    const existingMeetups: { [id: string]: Meetup } = state.meetups;
+  on(homeActions.getMoreLocalGatheringsComplete, (state, { payload }) => {
+    const existingGatherings: { [id: string]: Gathering } = state.gatherings;
 
-    const newMeetups: { [id: string]: Meetup } = {};
+    const newGatherings: { [id: string]: Gathering } = {};
     for (const entity of payload.value) {
-      newMeetups[entity.id] = entity;
+      newGatherings[entity.id] = entity;
     }
 
-    const allMeetups = { ...existingMeetups, ...newMeetups };
+    const allGatherings = { ...existingGatherings, ...newGatherings };
 
     return {
       ...state,
-      meetups: allMeetups,
+      gatherings: allGatherings,
       loading: false,
     };
   }),
 
-  on(homeActions.getLocalMeetupsComplete, (state, { payload }) => {
-    const meetups: { [id: string]: Meetup } = {};
+  on(homeActions.getLocalGatheringsComplete, (state, { payload }) => {
+    const gatherings: { [id: string]: Gathering } = {};
     for (const entity of payload.value) {
-      meetups[entity.id] = entity;
+      gatherings[entity.id] = entity;
     }
 
     return {
       ...state,
-      meetups,
+      gatherings,
       loading: false,
     };
   })

@@ -5,11 +5,11 @@ import { select, Store } from '@ngrx/store';
 import { selectIsLoggedIn } from '@workspace/auth/data';
 import * as fromGroupStore from '@workspace/groups/data';
 import {
+  GatheringsSignalRService,
   GroupsMemberSignalRService,
-  MeetupsSignalRService,
 } from '@workspace/groups/utils';
 import { MapsService } from '@workspace/maps/util';
-import { Group, GroupMember, Meetup } from '@workspace/shared/data';
+import { Gathering, Group, GroupMember } from '@workspace/shared/data';
 import { Observable } from 'rxjs';
 import { filter, tap } from 'rxjs/operators';
 
@@ -21,13 +21,13 @@ import { filter, tap } from 'rxjs/operators';
 export class GroupDetailsComponent implements OnInit, OnDestroy {
   item$: Observable<Group>;
   loggedIn$: Observable<boolean>;
-  previousMeetup$: Observable<Meetup>;
-  nextMeetup$: Observable<Meetup>;
-  upcomingMeetup$: Observable<Meetup>;
+  previousGathering$: Observable<Gathering>;
+  nextGathering$: Observable<Gathering>;
+  upcomingGathering$: Observable<Gathering>;
   isCurrentUserMember$: Observable<boolean>;
   isLoading$: Observable<boolean>;
   allMembers$: Observable<GroupMember[]>;
-  canAddNewMeetups$: Observable<boolean>;
+  canAddNewGatherings$: Observable<boolean>;
   isCurrentUserAdmin$: Observable<boolean>;
   address$: Observable<any>;
 
@@ -37,7 +37,7 @@ export class GroupDetailsComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     public location: Location,
     private mapsService: MapsService,
-    private meetupsSignalRService: MeetupsSignalRService,
+    private gatheringsSignalRService: GatheringsSignalRService,
     private groupsMemberSignalRService: GroupsMemberSignalRService
   ) {}
 
@@ -63,22 +63,24 @@ export class GroupDetailsComponent implements OnInit, OnDestroy {
       select(fromGroupStore.selectIsCurrentUserMember)
     );
 
-    this.previousMeetup$ = this.store.pipe(
-      select(fromGroupStore.selectPreviousMeetup)
+    this.previousGathering$ = this.store.pipe(
+      select(fromGroupStore.selectPreviousGathering)
     );
 
-    this.nextMeetup$ = this.store.pipe(select(fromGroupStore.selectNextMeetup));
+    this.nextGathering$ = this.store.pipe(
+      select(fromGroupStore.selectNextGathering)
+    );
 
-    this.upcomingMeetup$ = this.store.pipe(
-      select(fromGroupStore.selectUpcomingMeetup)
+    this.upcomingGathering$ = this.store.pipe(
+      select(fromGroupStore.selectUpcomingGathering)
     );
 
     this.allMembers$ = this.store.pipe(
       select(fromGroupStore.selectCurrentMembers)
     );
 
-    this.canAddNewMeetups$ = this.store.pipe(
-      select(fromGroupStore.selectCanAddNewMeetups)
+    this.canAddNewGatherings$ = this.store.pipe(
+      select(fromGroupStore.selectCanAddNewGatherings)
     );
 
     this.isCurrentUserAdmin$ = this.store.pipe(
@@ -87,12 +89,12 @@ export class GroupDetailsComponent implements OnInit, OnDestroy {
 
     this.store.dispatch(fromGroupStore.getSingleGroup());
 
-    this.meetupsSignalRService.initMeetupSignalr();
+    this.gatheringsSignalRService.initGatheringSignalr();
     this.groupsMemberSignalRService.initGroupMemberSignalr();
   }
 
   ngOnDestroy(): void {
-    this.meetupsSignalRService.stopConnection();
+    this.gatheringsSignalRService.stopConnection();
     this.groupsMemberSignalRService.stopConnection();
   }
 

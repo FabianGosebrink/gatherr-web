@@ -1,16 +1,16 @@
 import { UserProfile } from './profile';
 
-export interface MeetupMember {
+export interface GatheringMember {
   memberId: string;
   userProfile: UserProfile;
-  role: MeetupRole;
+  role: GatheringRole;
 }
 
-export enum MeetupRole {
+export enum GatheringRole {
   Admin = 0,
   Organiser = 1,
   Attendee = 2,
-  WaitingList = 3
+  WaitingList = 3,
 }
 
 export interface GroupMember {
@@ -22,5 +22,5 @@ export interface GroupMember {
 export enum GroupRole {
   Admin = 0,
   Organiser = 1,
-  Member = 2
+  Member = 2,
 }

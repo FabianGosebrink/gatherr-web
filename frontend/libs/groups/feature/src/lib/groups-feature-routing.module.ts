@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from '@workspace/auth/util';
+import { GatheringCancelComponent } from './gathering-cancel/gathering-cancel.component';
+import { GatheringContactComponent } from './gathering-contact/gathering-contact.component';
+import { GatheringDetailsComponent } from './gathering-details/gathering-details.component';
+import { GatheringFormComponent } from './gathering-form/gathering-form.component';
+import { GatheringLeaveComponent } from './gathering-leave/gathering-leave.component';
+import { GatheringMemberOverviewComponent } from './gathering-member-overview/gathering-member-overview.component';
 import { GroupDetailsComponent } from './group-details/group-details.component';
 import { GroupFormComponent } from './group-form/group-form.component';
 import { GroupLeaveComponent } from './group-leave/group-leave.component';
 import { GroupMemberOverviewComponent } from './group-member-overview/group-member-overview.component';
 import { GroupsContactComponent } from './groups-contact/groups-contact.component';
-import { GroupsMeetupsListComponent } from './groups-meetups-list/groups-meetups-list.component';
+import { GroupsGatheringsListComponent } from './groups-gatherings-list/groups-gatherings-list.component';
 import { GroupsOverviewComponent } from './groups-overview/groups-overview.component';
-import { MeetupCancelComponent } from './meetup-cancel/meetup-cancel.component';
-import { MeetupContactComponent } from './meetup-contact/meetup-contact.component';
-import { MeetupDetailsComponent } from './meetup-details/meetup-details.component';
-import { MeetupFormComponent } from './meetup-form/meetup-form.component';
-import { MeetupLeaveComponent } from './meetup-leave/meetup-leave.component';
-import { MeetupMemberOverviewComponent } from './meetup-member-overview/meetup-member-overview.component';
 
 const routes: Routes = [
   { path: 'create', component: GroupFormComponent, canActivate: [AuthGuard] },
@@ -28,39 +28,42 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: ':id/meetups',
-    component: GroupsMeetupsListComponent,
+    path: ':id/gatherings',
+    component: GroupsGatheringsListComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: ':id/meetups/create',
-    component: MeetupFormComponent,
+    path: ':id/gatherings/create',
+    component: GatheringFormComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: ':id/meetups/:meetupid/edit',
-    component: MeetupFormComponent,
+    path: ':id/gatherings/:gatheringid/edit',
+    component: GatheringFormComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: ':id/meetups/:meetupid/members',
-    component: MeetupMemberOverviewComponent,
+    path: ':id/gatherings/:gatheringid/members',
+    component: GatheringMemberOverviewComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: ':id/meetups/:meetupid/leave',
-    component: MeetupLeaveComponent,
+    path: ':id/gatherings/:gatheringid/leave',
+    component: GatheringLeaveComponent,
     canActivate: [AuthGuard],
   },
   {
-    path: ':id/meetups/:meetupid/cancel',
-    component: MeetupCancelComponent,
+    path: ':id/gatherings/:gatheringid/cancel',
+    component: GatheringCancelComponent,
     canActivate: [AuthGuard],
   },
-  { path: ':id/meetups/:meetupid/contact', component: MeetupContactComponent },
   {
-    path: ':id/meetups/:meetupid',
-    component: MeetupDetailsComponent,
+    path: ':id/gatherings/:gatheringid/contact',
+    component: GatheringContactComponent,
+  },
+  {
+    path: ':id/gatherings/:gatheringid',
+    component: GatheringDetailsComponent,
   },
 ];
 

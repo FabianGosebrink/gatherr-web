@@ -11,9 +11,9 @@ namespace Gatherr.Services.ControllerService
         IObjectDescriptor<List<GroupMemberDto>> RemoveMemberFromGroup(string linkName, Guid id);
         IObjectDescriptor<List<GroupMemberDto>> GetGroupMembers(string linkName);
         IObjectDescriptor<GroupMemberDto> UpdateGroupMember(string linkName, GroupMemberUpdateDto updateDto);
-        IObjectDescriptor<MeetupMemberDto> RemoveMemberFromMeetup(string linkName, Guid meetupId, Guid memberId);
-        IObjectDescriptor<MeetupMemberDto> AddCurrentUserAsMeetupMember(string linkName, Guid meetupId, string username);
-        IObjectDescriptor<MeetupMemberDto> UpdateMeetupMember(string linkName, Guid meetupId, MeetupMemberUpdateDto updateDto);
-        IObjectDescriptor<List<MeetupMemberDto>> GetAllMeetupAttendees(string linkName, Guid meetupId);
+        IObjectDescriptor<GatheringMemberDto> RemoveMemberFromGathering(string linkName, Guid gatheringId, Guid memberId);
+        IObjectDescriptor<GatheringMemberDto> AddCurrentUserAsGatheringMember(string linkName, Guid gatheringId, string username);
+        IObjectDescriptor<GatheringMemberDto> UpdateGatheringMember(string linkName, Guid gatheringId, GatheringMemberUpdateDto updateDto);
+        IObjectDescriptor<List<GatheringMemberDto>> GetAllGatheringAttendees(string linkName, Guid gatheringId);
     }
 }

@@ -1,16 +1,16 @@
 import { ActionReducerMap, createReducer, on } from '@ngrx/store';
-import { Group, Meetup } from '@workspace/shared/data';
+import { Gathering, Group } from '@workspace/shared/data';
 import * as personalActions from './personal.actions';
 
 export interface ReducerPersonalState {
   groups: { [id: string]: Group };
-  meetups: { [id: string]: Meetup };
+  gatherings: { [id: string]: Gathering };
   loading: boolean;
 }
 
 export const initialState: ReducerPersonalState = {
   groups: {},
-  meetups: {},
+  gatherings: {},
   loading: false,
 };
 
@@ -19,7 +19,7 @@ export const personalReducer = createReducer(
 
   on(
     personalActions.getAllPersonalGroups,
-    personalActions.getAllPersonalMeetups,
+    personalActions.getAllPersonalGatherings,
     (state) => {
       return {
         ...state,
@@ -42,16 +42,16 @@ export const personalReducer = createReducer(
     };
   }),
 
-  on(personalActions.getAllPersonalMeetupsSuccess, (state, { payload }) => {
-    const meetups: { [id: string]: Meetup } = {};
+  on(personalActions.getAllPersonalGatheringsSuccess, (state, { payload }) => {
+    const gatherings: { [id: string]: Gathering } = {};
 
     for (const entity of payload.value) {
-      meetups[entity.id] = entity;
+      gatherings[entity.id] = entity;
     }
 
     return {
       ...state,
-      meetups,
+      gatherings,
       loading: false,
     };
   }),
