@@ -13,11 +13,11 @@ namespace Gatherr.Services.ControllerService
         private readonly IEmailService _emailService;
 
         private readonly IGroupMemberRepository _groupMemberRepository;
-        private readonly IMeetupMemberRepository _meetupMemberRepository;
+        private readonly IGatheringMemberRepository _meetupMemberRepository;
 
         public ContactMembersControllerService(
             IGroupMemberRepository groupMemberRepository,
-            IMeetupMemberRepository meetupMemberRepository, 
+            IGatheringMemberRepository meetupMemberRepository, 
             IEmailService emailService)
         {
             _emailService = emailService;
@@ -27,7 +27,7 @@ namespace Gatherr.Services.ControllerService
 
         public async Task<bool> ContactGatheringAsync(ContactGatheringDto contactGatheringDto)
         {
-            IQueryable<MeetupMemberEntity> meetupMembers = _meetupMemberRepository
+            IQueryable<GatheringMemberEntity> meetupMembers = _meetupMemberRepository
                 .GetAll(predicate: x => x.MeetupId == contactGatheringDto.GatheringId, 
                     include: source => source.Include(y => y.UserProfile));
 

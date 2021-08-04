@@ -2,7 +2,7 @@
 
 namespace Gatherr.Api.Hubs
 {
-    public class MeetupsHub : Hub
+    public class GatheringMembersHub : Hub
     {
 
     }

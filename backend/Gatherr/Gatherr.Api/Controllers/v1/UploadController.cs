@@ -35,10 +35,10 @@ namespace Gatherr.Api.Controllers.v1
         }
 
         [HttpPost("meetup"), DisableRequestSizeLimit]
-        public async Task<ActionResult> UploadMeetupPicture()
+        public async Task<ActionResult> UploadGatheringPicture()
         {
             IFormFile file = Request.Form.Files[0];
-            var result = await _uploadControllerService.UploadFileBlobAsync("meetups", file);
+            var result = await _uploadControllerService.UploadFileBlobAsync("gatherings", file);
 
             var toReturn = result.AbsoluteUri;
 

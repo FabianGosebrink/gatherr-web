@@ -16,7 +16,7 @@ namespace Gatherr.Models.Entities
         public DateTime Created { get; set; }
 
         public List<GroupMemberEntity> GroupMembers { get; set; }
-        public List<MeetupEntity> Meetups { get; set; }
+        public List<GatheringEntity> Gatherings { get; set; }
         public List<GroupCategoryEntity> GroupCategories { get; set; }
     }
 }

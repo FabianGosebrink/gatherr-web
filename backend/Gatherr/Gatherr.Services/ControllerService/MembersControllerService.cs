@@ -16,16 +16,16 @@ namespace Gatherr.Services.ControllerService
         private readonly IUserProfileRepository _userProfileRepository;
         private readonly IMapper _mapper;
         private readonly IGroupMemberRepository _groupMemberRepository;
-        private readonly IMeetupRepository _meetupRepository;
-        private readonly IMeetupMemberRepository _meetupMemberRepository;
+        private readonly IGatheringRepository _meetupRepository;
+        private readonly IGatheringMemberRepository _meetupMemberRepository;
 
         public MembersControllerService(
             IGroupsRepository repository,
             IMapper mapper,
             IGroupMemberRepository groupMemberRepository,
-            IMeetupMemberRepository meetupMemberRepository,
+            IGatheringMemberRepository meetupMemberRepository,
             IUserProfileRepository userProfileRepository,
-            IMeetupRepository meetupRepository)
+            IGatheringRepository meetupRepository)
         {
 
             _repository = repository;
@@ -112,9 +112,9 @@ namespace Gatherr.Services.ControllerService
             };
         }
 
-        public IObjectDescriptor<MeetupMemberDto> RemoveMemberFromMeetup(string linkName, Guid meetupId, Guid memberId)
+        public IObjectDescriptor<GatheringMemberDto> RemoveMemberFromGathering(string linkName, Guid meetupId, Guid memberId)
         {
-            MeetupEntity existingMeetup = _meetupRepository
+            GatheringEntity existingMeetup = _meetupRepository
                 .GetSingle(predicate: x => x.Id == meetupId && x.Group.LinkName == linkName,
                         include: source => source.Include(x => x.Group).Include(x => x.Attendees));
 
@@ -132,11 +132,11 @@ namespace Gatherr.Services.ControllerService
 
             existingMeetup.Attendees.Remove(existingMember);
 
-            MeetupMemberEntity nextMeetupMemberFromWaitingList = existingMeetup.Attendees.Where(x => x.Role == MeetupRole.WaitingList).OrderBy(x => x.Modified).FirstOrDefault();
+            GatheringMemberEntity nextMeetupMemberFromWaitingList = existingMeetup.Attendees.Where(x => x.Role == GatheringRole.WaitingList).OrderBy(x => x.Modified).FirstOrDefault();
 
             if(nextMeetupMemberFromWaitingList != null)
             {
-                nextMeetupMemberFromWaitingList.Role = MeetupRole.Attendee;
+                nextMeetupMemberFromWaitingList.Role = GatheringRole.Attendee;
                 _meetupMemberRepository.Update(nextMeetupMemberFromWaitingList);
             }
 
@@ -145,9 +145,9 @@ namespace Gatherr.Services.ControllerService
                 throw new Exception("Deleting an item failed on save.");
             }
 
-            return new ObjectDescriptor<MeetupMemberDto>()
+            return new ObjectDescriptor<GatheringMemberDto>()
             {
-                Value = _mapper.Map<MeetupMemberDto>(existingMember)
+                Value = _mapper.Map<GatheringMemberDto>(existingMember)
             };
         }
 
@@ -190,9 +190,9 @@ namespace Gatherr.Services.ControllerService
             };
         }
 
-        public IObjectDescriptor<MeetupMemberDto> UpdateMeetupMember(string linkName, Guid meetupId, MeetupMemberUpdateDto updateDto)
+        public IObjectDescriptor<GatheringMemberDto> UpdateGatheringMember(string linkName, Guid meetupId, GatheringMemberUpdateDto updateDto)
         {
-            MeetupMemberEntity existingMeetupMember = _meetupMemberRepository
+            GatheringMemberEntity existingMeetupMember = _meetupMemberRepository
                 .GetSingle(predicate: x => x.MeetupId == meetupId && x.Meetup.Group.LinkName == linkName && x.UserProfileId == updateDto.MemberId,
                 include: source => source.Include(y => y.Meetup).ThenInclude(y => y.Group));
 
@@ -209,15 +209,15 @@ namespace Gatherr.Services.ControllerService
             {
                 throw new Exception("Adding an item failed on save.");
             }
-            return new ObjectDescriptor<MeetupMemberDto>()
+            return new ObjectDescriptor<GatheringMemberDto>()
             {
-                Value = _mapper.Map<MeetupMemberDto>(existingMeetupMember)
+                Value = _mapper.Map<GatheringMemberDto>(existingMeetupMember)
             };
         }
 
-        public IObjectDescriptor<List<MeetupMemberDto>> GetAllMeetupAttendees(string linkName, Guid meetupId)
+        public IObjectDescriptor<List<GatheringMemberDto>> GetAllGatheringAttendees(string linkName, Guid meetupId)
         {
-            MeetupEntity existingMeetup = _meetupRepository
+            GatheringEntity existingMeetup = _meetupRepository
                .GetSingle(predicate: x => x.Id == meetupId && x.Group.LinkName == linkName,
                        include: source => source.Include(x => x.Group).Include(x => x.Attendees).ThenInclude(x => x.UserProfile));
 
@@ -226,17 +226,17 @@ namespace Gatherr.Services.ControllerService
                 return null;
             }
 
-            var memberDtos = _mapper.Map<List<MeetupMemberDto>>(existingMeetup.Attendees);
+            var memberDtos = _mapper.Map<List<GatheringMemberDto>>(existingMeetup.Attendees);
 
-            return new ObjectDescriptor<List<MeetupMemberDto>>()
+            return new ObjectDescriptor<List<GatheringMemberDto>>()
             {
                 Value = memberDtos,
             };
         }
 
-        public IObjectDescriptor<MeetupMemberDto> AddCurrentUserAsMeetupMember(string linkName, Guid meetupId, string username)
+        public IObjectDescriptor<GatheringMemberDto> AddCurrentUserAsGatheringMember(string linkName, Guid meetupId, string username)
         {
-            MeetupEntity existingMeetup = _meetupRepository
+            GatheringEntity existingMeetup = _meetupRepository
                 .GetSingle(predicate: x => x.Id == meetupId && x.Group.LinkName == linkName, include: source => source.Include(x => x.Attendees).ThenInclude(x => x.UserProfile));
 
             if (existingMeetup == null)
@@ -253,11 +253,11 @@ namespace Gatherr.Services.ControllerService
 
             if (existingMeetup.Attendees.Count() + 1 >= existingMeetup.MaxAttendees)
             {
-                _meetupMemberRepository.Add(new MeetupMemberEntity() { UserProfileId = existingUserprofile.Id, Role = MeetupRole.WaitingList, MeetupId = meetupId, Modified = DateTime.UtcNow });
+                _meetupMemberRepository.Add(new GatheringMemberEntity() { UserProfileId = existingUserprofile.Id, Role = GatheringRole.WaitingList, MeetupId = meetupId, Modified = DateTime.UtcNow });
             }
             else
             {
-                _meetupMemberRepository.Add(new MeetupMemberEntity() { UserProfileId = existingUserprofile.Id, Role = MeetupRole.Attendee, MeetupId = meetupId, Modified = DateTime.UtcNow });
+                _meetupMemberRepository.Add(new GatheringMemberEntity() { UserProfileId = existingUserprofile.Id, Role = GatheringRole.Attendee, MeetupId = meetupId, Modified = DateTime.UtcNow });
             }
 
             if (_repository.Save() <= 0)
@@ -268,9 +268,9 @@ namespace Gatherr.Services.ControllerService
             var addedMember = _meetupMemberRepository.GetSingle(predicate: x => x.UserProfileId == existingUserprofile.Id && x.MeetupId == meetupId,
                 include: source => source.Include(x => x.UserProfile));
 
-            return new ObjectDescriptor<MeetupMemberDto>()
+            return new ObjectDescriptor<GatheringMemberDto>()
             {
-                Value = _mapper.Map<MeetupMemberDto>(addedMember)
+                Value = _mapper.Map<GatheringMemberDto>(addedMember)
             };
         }
     }
