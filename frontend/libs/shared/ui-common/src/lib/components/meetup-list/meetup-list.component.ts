@@ -1,14 +1,14 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Meetup } from '@workspace/shared/data';
+import { Gathering } from '@workspace/shared/data';
 
 @Component({
-  selector: 'workspace-meetup-list',
-  templateUrl: './meetup-list.component.html',
-  styleUrls: ['./meetup-list.component.scss'],
+  selector: 'workspace-gathering-list',
+  templateUrl: './gathering-list.component.html',
+  styleUrls: ['./gathering-list.component.scss'],
 })
-export class MeetupListComponent {
-  @Input() items: Meetup[] = [];
+export class GatheringListComponent {
+  @Input() items: Gathering[] = [];
 
   constructor(public router: Router) {}
 }

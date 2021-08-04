@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import {
   getCurrentPlace,
-  getLocalMeetups,
-  getMoreLocalMeetups,
-  selectAllLocalMeetups,
+  getLocalGatherings,
+  getMoreLocalGatherings,
+  selectAllLocalGatherings,
   selectCurrentPlace,
   selectIsLoading,
 } from '@workspace/home/data';
-import { Meetup } from '@workspace/shared/data';
+import { Gathering } from '@workspace/shared/data';
 import { Observable } from 'rxjs';
 import { filter } from 'rxjs/operators';
 
@@ -32,7 +32,7 @@ export class Home2Component implements OnInit {
     type: string;
   } = null;
 
-  localMeetups$: Observable<Meetup[]>;
+  localGatherings$: Observable<Gathering[]>;
   isLoading$: Observable<boolean>;
   private last_known_scroll_position = 0;
   private ticking = false;
@@ -49,8 +49,8 @@ export class Home2Component implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.localMeetups$ = this.store.pipe(
-      select(selectAllLocalMeetups, { count: 8 })
+    this.localGatherings$ = this.store.pipe(
+      select(selectAllLocalGatherings, { count: 8 })
     );
 
     this.store
@@ -85,7 +85,7 @@ export class Home2Component implements OnInit {
 
     if (totalHeight >= scrollHeight) {
       this.store.dispatch(
-        getMoreLocalMeetups({
+        getMoreLocalGatherings({
           payload: {
             city: this.currentSearchingPlace.city,
             country: this.currentSearchingPlace.country,
@@ -95,9 +95,9 @@ export class Home2Component implements OnInit {
     }
   }
 
-  navigateTo(meetup: Meetup) {
+  navigateTo(gathering: Gathering) {
     this.router.navigate([
-      `groups/${meetup.groupLinkName}/meetups/${meetup.id}`,
+      `groups/${gathering.groupLinkName}/gatherings/${gathering.id}`,
     ]);
   }
 
@@ -109,7 +109,7 @@ export class Home2Component implements OnInit {
     }
 
     this.store.dispatch(
-      getLocalMeetups({
+      getLocalGatherings({
         payload: {
           city: city,
           country: this.currentSearchingPlace.country,

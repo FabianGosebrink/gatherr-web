@@ -7,7 +7,7 @@ const myWindow = {
   google: googleWindowMock,
 };
 
-describe('MeetupMapComponent', () => {
+describe('GatheringMapComponent', () => {
   let component: MapComponent;
   let fixture: ComponentFixture<MapComponent>;
 

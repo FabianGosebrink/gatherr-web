@@ -3,8 +3,8 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import {
+  GatheringsSignalRService,
   GroupsMemberSignalRService,
-  MeetupsSignalRService,
 } from '@workspace/groups/utils';
 import { MapsService } from '@workspace/maps/util';
 import { SharedUiCommonModule } from '@workspace/shared/ui-common';
@@ -29,8 +29,8 @@ describe('GroupDetailsComponent', () => {
         providers: [
           provideMockStore({}),
           mockClass(MapsService, ['getAddressByLatitudeLongitude']),
-          mockClass(MeetupsSignalRService, [
-            'initMeetupSignalr',
+          mockClass(GatheringsSignalRService, [
+            'initGatheringSignalr',
             'stopConnection',
           ]),
           mockClass(GroupsMemberSignalRService, [

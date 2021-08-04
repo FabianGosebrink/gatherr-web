@@ -2,15 +2,15 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { MeetupMembersSignalRService } from '@workspace/groups/utils';
+import { GatheringMembersSignalRService } from '@workspace/groups/utils';
 import { SharedUiCommonModule } from '@workspace/shared/ui-common';
 import { SharedUiLayoutModule } from '@workspace/shared/ui-layout';
 import { mockClass } from '@workspace/tools/testing';
-import { MeetupDetailsComponent } from './meetup-details.component';
+import { GatheringDetailsComponent } from './gathering-details.component';
 
-describe('MeetupDetailsComponent', () => {
-  let component: MeetupDetailsComponent;
-  let fixture: ComponentFixture<MeetupDetailsComponent>;
+describe('GatheringDetailsComponent', () => {
+  let component: GatheringDetailsComponent;
+  let fixture: ComponentFixture<GatheringDetailsComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -20,12 +20,12 @@ describe('MeetupDetailsComponent', () => {
           SharedUiLayoutModule,
           SharedUiCommonModule,
         ],
-        declarations: [MeetupDetailsComponent],
+        declarations: [GatheringDetailsComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
         providers: [
           provideMockStore({}),
-          mockClass(MeetupMembersSignalRService, [
-            'initMeetupMemberSignalr',
+          mockClass(GatheringMembersSignalRService, [
+            'initGatheringMemberSignalr',
             'stopConnection',
           ]),
         ],
@@ -34,7 +34,7 @@ describe('MeetupDetailsComponent', () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeetupDetailsComponent);
+    fixture = TestBed.createComponent(GatheringDetailsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

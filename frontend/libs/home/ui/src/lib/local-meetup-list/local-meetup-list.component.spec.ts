@@ -2,24 +2,24 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { getTranslocoModule } from '@workspace/tools/testing';
-import { LocalMeetupListComponent } from './local-meetup-list.component';
+import { LocalGatheringListComponent } from './local-gathering-list.component';
 
-describe('LocalMeetupListComponent', () => {
-  let component: LocalMeetupListComponent;
-  let fixture: ComponentFixture<LocalMeetupListComponent>;
+describe('LocalGatheringListComponent', () => {
+  let component: LocalGatheringListComponent;
+  let fixture: ComponentFixture<LocalGatheringListComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [getTranslocoModule(), RouterTestingModule],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
-        declarations: [LocalMeetupListComponent],
+        declarations: [LocalGatheringListComponent],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LocalMeetupListComponent);
+    fixture = TestBed.createComponent(LocalGatheringListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

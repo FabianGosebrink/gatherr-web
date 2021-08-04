@@ -11,13 +11,13 @@ import {
 } from '@workspace/personal/data';
 import { SharedUiCommonModule } from '@workspace/shared/ui-common';
 import { SharedUiLayoutModule } from '@workspace/shared/ui-layout';
+import { GatheringsPersonalComponent } from './gatherings-personal/gatherings-personal.component';
 import { GroupsPersonalComponent } from './groups-personal/groups-personal.component';
-import { MeetupsPersonalComponent } from './meetups-personal/meetups-personal.component';
 
 export const personalFeatureRoutes: Route[] = [
   { path: '', redirectTo: 'profile' },
   { path: 'groups', component: GroupsPersonalComponent },
-  { path: 'meetups', component: MeetupsPersonalComponent },
+  { path: 'gatherings', component: GatheringsPersonalComponent },
 ];
 
 @NgModule({
@@ -31,6 +31,6 @@ export const personalFeatureRoutes: Route[] = [
     EffectsModule.forFeature(personalEffects),
   ],
 
-  declarations: [GroupsPersonalComponent, MeetupsPersonalComponent],
+  declarations: [GroupsPersonalComponent, GatheringsPersonalComponent],
 })
 export class PersonalFeatureModule {}

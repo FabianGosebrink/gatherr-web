@@ -7,7 +7,7 @@
     <mat-form-field>
       <mat-select [formControl]="currentRole" required name="currentRole">
         <mat-option *ngFor="let role of allRoles" [value]="role">
-          {{ meetupRoles[role] }}
+          {{ gatheringRoles[role] }}
         </mat-option>
       </mat-select>
     </mat-form-field>

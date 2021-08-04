@@ -91,13 +91,13 @@
       <workspace-group-main-info [item]="item" [address]="address$ | async">
       </workspace-group-main-info>
 
-      <workspace-group-meetups
-        [upcomingMeetup]="upcomingMeetup$ | async"
-        [nextMeetup]="nextMeetup$ | async"
-        [previousMeetup]="previousMeetup$ | async"
+      <workspace-group-gatherings
+        [upcomingGathering]="upcomingGathering$ | async"
+        [nextGathering]="nextGathering$ | async"
+        [previousGathering]="previousGathering$ | async"
         [loggedIn]="loggedIn$ | async"
-        [canAddNewMeetups]="canAddNewMeetups$ | async"
-      ></workspace-group-meetups>
+        [canAddNewGatherings]="canAddNewGatherings$ | async"
+      ></workspace-group-gatherings>
 
       <workspace-members
         [members]="allMembers$ | async"
@@ -106,7 +106,7 @@
     </div>
   </div>
 
-  <workspace-add-meetup-button
-    *ngIf="canAddNewMeetups$ | async"
-  ></workspace-add-meetup-button>
+  <workspace-add-gathering-button
+    *ngIf="canAddNewGatherings$ | async"
+  ></workspace-add-gathering-button>
 </div>

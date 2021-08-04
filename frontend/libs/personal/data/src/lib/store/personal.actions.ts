@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Group, Meetup, ModelDescriptor } from '@workspace/shared/data';
+import { Gathering, Group, ModelDescriptor } from '@workspace/shared/data';
 
 export const getAllPersonalGroups = createAction('[Personal] getAllGroups');
 export const getAllPersonalGroupsSuccess = createAction(
@@ -7,12 +7,12 @@ export const getAllPersonalGroupsSuccess = createAction(
   props<{ payload: ModelDescriptor<Group[]> }>()
 );
 
-export const getAllPersonalMeetups = createAction(
-  '[Personal] getAllPersonalMeetups'
+export const getAllPersonalGatherings = createAction(
+  '[Personal] getAllPersonalGatherings'
 );
-export const getAllPersonalMeetupsSuccess = createAction(
-  '[Personal] getAllPersonalMeetupsSuccess',
-  props<{ payload: ModelDescriptor<Meetup[]> }>()
+export const getAllPersonalGatheringsSuccess = createAction(
+  '[Personal] getAllPersonalGatheringsSuccess',
+  props<{ payload: ModelDescriptor<Gathering[]> }>()
 );
 
 export const personalError = createAction(

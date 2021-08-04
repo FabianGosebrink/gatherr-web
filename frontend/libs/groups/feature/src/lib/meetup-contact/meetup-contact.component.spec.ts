@@ -1,16 +1,16 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { MeetupContactComponent } from './meetup-contact.component';
+import { GatheringContactComponent } from './gathering-contact.component';
 
-describe('MeetupContactComponent', () => {
-  let component: MeetupContactComponent;
-  let fixture: ComponentFixture<MeetupContactComponent>;
+describe('GatheringContactComponent', () => {
+  let component: GatheringContactComponent;
+  let fixture: ComponentFixture<GatheringContactComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [MeetupContactComponent],
+        declarations: [GatheringContactComponent],
         providers: [provideMockStore({})],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
@@ -18,7 +18,7 @@ describe('MeetupContactComponent', () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeetupContactComponent);
+    fixture = TestBed.createComponent(GatheringContactComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

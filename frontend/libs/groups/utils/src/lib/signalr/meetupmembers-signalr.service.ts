@@ -7,13 +7,13 @@ import {
 } from '@microsoft/signalr';
 import { Store } from '@ngrx/store';
 import {
-  signalrMeetupMemberAdded,
-  signalrMeetupMemberRemoved,
+  signalrGatheringMemberAdded,
+  signalrGatheringMemberRemoved,
 } from '@workspace/groups/data';
 import { EnvironmentService } from '@workspace/shared/environment';
 
 @Injectable({ providedIn: 'root' })
-export class MeetupMembersSignalRService {
+export class GatheringMembersSignalRService {
   private connection: HubConnection;
 
   constructor(
@@ -21,15 +21,15 @@ export class MeetupMembersSignalRService {
     private store: Store<any>
   ) {}
 
-  initMeetupMemberSignalr() {
+  initGatheringMemberSignalr() {
     if (this.connection?.state === HubConnectionState.Connected) {
       return;
     }
 
-    console.log('initMeetupMemberSignalr');
+    console.log('initGatheringMemberSignalr');
 
     this.connection = new HubConnectionBuilder()
-      .withUrl(`${this.environmentService.getServerUrl()}meetupmembershub`)
+      .withUrl(`${this.environmentService.getServerUrl()}gatheringmembershub`)
       .configureLogging(LogLevel.Information)
       .withAutomaticReconnect()
       .build();
@@ -39,19 +39,19 @@ export class MeetupMembersSignalRService {
   }
 
   stopConnection() {
-    console.log('stopConnection MeetupMembersSignalRService');
+    console.log('stopConnection GatheringMembersSignalRService');
     this.connection.stop().catch((err) => console.log(err.toString()));
   }
 
   private registerOnEvents() {
-    this.connection.on('meetupmember-added', (item) => {
-      console.log('meetupmember-added', item);
-      this.store.dispatch(signalrMeetupMemberAdded({ payload: item }));
+    this.connection.on('gatheringmember-added', (item) => {
+      console.log('gatheringmember-added', item);
+      this.store.dispatch(signalrGatheringMemberAdded({ payload: item }));
     });
 
-    this.connection.on('meetupmember-removed', (item) => {
-      console.log('meetupmember-removed', item);
-      this.store.dispatch(signalrMeetupMemberRemoved({ payload: item }));
+    this.connection.on('gatheringmember-removed', (item) => {
+      console.log('gatheringmember-removed', item);
+      this.store.dispatch(signalrGatheringMemberRemoved({ payload: item }));
     });
   }
 }

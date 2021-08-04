@@ -1,4 +1,4 @@
-export interface Meetup {
+export interface Gathering {
   id: string;
   title: string;
   description: string;
@@ -11,14 +11,14 @@ export interface Meetup {
   date: Date;
   imageUrl: string;
   linkName: string;
-  state: MeetupState;
+  state: GatheringState;
 
   groupName: string;
   groupLinkName: string;
   groupId: string;
 }
 
-export interface MeetupCreate {
+export interface GatheringCreate {
   title: string;
   description: string;
   maxAttendees: number;
@@ -30,7 +30,7 @@ export interface MeetupCreate {
   imageUrl: string;
 }
 
-export interface MeetupUpdate {
+export interface GatheringUpdate {
   id: string;
   title: string;
   description: string;
@@ -41,10 +41,10 @@ export interface MeetupUpdate {
   city: string;
   country: string;
   date: Date;
-  state?: MeetupState;
+  state?: GatheringState;
 }
 
-export interface MeetupFilter {
+export interface GatheringFilter {
   city: string;
   country: string;
   type?: string;
@@ -52,7 +52,7 @@ export interface MeetupFilter {
   take?: number;
 }
 
-export enum MeetupState {
+export enum GatheringState {
   Ok,
   Cancelled,
 }

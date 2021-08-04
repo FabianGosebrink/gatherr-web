@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { GroupMember, MeetupMember } from '@workspace/shared/data';
+import { GatheringMember, GroupMember } from '@workspace/shared/data';
 
 @Component({
   selector: 'workspace-members',
@@ -7,7 +7,7 @@ import { GroupMember, MeetupMember } from '@workspace/shared/data';
   styleUrls: ['./members.component.scss'],
 })
 export class MembersComponent implements OnInit {
-  @Input() members: GroupMember[] | MeetupMember[] = [];
+  @Input() members: GroupMember[] | GatheringMember[] = [];
   @Input() title: string;
 
   constructor() {}

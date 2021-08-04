@@ -9,15 +9,15 @@ import { SharedUiCommonModule } from '@workspace/shared/ui-common';
 import { SharedUiLayoutModule } from '@workspace/shared/ui-layout';
 import { googleWindowMock } from '@workspace/tools/testing';
 import { mockClass } from 'tools/testing/mock-class';
-import { MeetupFormComponent } from './meetup-form.component';
+import { GatheringFormComponent } from './gathering-form.component';
 
 const myWindow = {
   google: googleWindowMock,
 };
 
-describe('MeetupFormComponent', () => {
-  let component: MeetupFormComponent;
-  let fixture: ComponentFixture<MeetupFormComponent>;
+describe('GatheringFormComponent', () => {
+  let component: GatheringFormComponent;
+  let fixture: ComponentFixture<GatheringFormComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -29,7 +29,7 @@ describe('MeetupFormComponent', () => {
           RouterTestingModule,
           NoopAnimationsModule,
         ],
-        declarations: [MeetupFormComponent],
+        declarations: [GatheringFormComponent],
         providers: [
           mockClass(MapsService, ['getPlaceByLatLng']),
           provideMockStore({}),
@@ -41,7 +41,7 @@ describe('MeetupFormComponent', () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeetupFormComponent);
+    fixture = TestBed.createComponent(GatheringFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

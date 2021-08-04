@@ -1,36 +1,36 @@
 import { Component, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Meetup } from '@workspace/shared/data';
+import { Gathering } from '@workspace/shared/data';
 
 @Component({
-  selector: 'workspace-group-meetups',
-  templateUrl: './group-meetups.component.html',
-  styleUrls: ['./group-meetups.component.scss'],
+  selector: 'workspace-group-gatherings',
+  templateUrl: './group-gatherings.component.html',
+  styleUrls: ['./group-gatherings.component.scss'],
 })
-export class GroupMeetupsComponent {
-  @Input() previousMeetup: Meetup;
-  @Input() nextMeetup: Meetup;
-  @Input() upcomingMeetup: Meetup;
+export class GroupGatheringsComponent {
+  @Input() previousGathering: Gathering;
+  @Input() nextGathering: Gathering;
+  @Input() upcomingGathering: Gathering;
   @Input() loggedIn: boolean;
-  @Input() canAddNewMeetups: boolean;
+  @Input() canAddNewGatherings: boolean;
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  navigateToMeetupAdd() {
+  navigateToGatheringAdd() {
     this.router.navigate([
       '/groups',
       this.activatedRoute.snapshot.params.id,
-      'meetups',
+      'gatherings',
       'create',
     ]);
   }
 
-  navigateToMeetup(meetup: Meetup) {
+  navigateToGathering(gathering: Gathering) {
     this.router.navigate([
       '/groups',
       this.activatedRoute.snapshot.params.id,
-      'meetups',
-      meetup.linkName,
+      'gatherings',
+      gathering.linkName,
     ]);
   }
 }

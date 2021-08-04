@@ -5,11 +5,11 @@ import * as fromGroupStore from '@workspace/groups/data';
 import { ConfirmResult } from '@workspace/shared/ui-common';
 
 @Component({
-  selector: 'workspace-meetup-leave',
-  templateUrl: './meetup-leave.component.html',
-  styleUrls: ['./meetup-leave.component.scss'],
+  selector: 'workspace-gathering-leave',
+  templateUrl: './gathering-leave.component.html',
+  styleUrls: ['./gathering-leave.component.scss'],
 })
-export class MeetupLeaveComponent implements OnInit {
+export class GatheringLeaveComponent implements OnInit {
   constructor(
     private store: Store<any>,
     private router: Router,
@@ -17,25 +17,25 @@ export class MeetupLeaveComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.ensureMeetupIsInState();
+    this.ensureGatheringIsInState();
   }
 
   possibleLeave(result: ConfirmResult) {
     if (result === ConfirmResult.Ok) {
       this.store.dispatch(
-        fromGroupStore.removeCurrentUserFromMeetupAttendees()
+        fromGroupStore.removeCurrentUserFromGatheringAttendees()
       );
     } else {
       this.router.navigate([
         '/groups',
         this.activatedRoute.snapshot.params.id,
-        'meetups',
-        this.activatedRoute.snapshot.params.meetupid,
+        'gatherings',
+        this.activatedRoute.snapshot.params.gatheringid,
       ]);
     }
   }
 
-  private ensureMeetupIsInState() {
-    this.store.dispatch(fromGroupStore.getSingleMeetup());
+  private ensureGatheringIsInState() {
+    this.store.dispatch(fromGroupStore.getSingleGathering());
   }
 }

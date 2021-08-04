@@ -1,7 +1,7 @@
 <workspace-map
-  *ngIf="meetup$ | async as meetup"
-  [lat]="meetup.latitude"
-  [lng]="meetup.longitude"
+  *ngIf="gathering$ | async as gathering"
+  [lat]="gathering.latitude"
+  [lng]="gathering.longitude"
   [heightInPx]="300"
 ></workspace-map>
 
@@ -14,11 +14,11 @@
 
   <div class="mt-20">
     <div class="mt-50">
-      <workspace-meetup-member-roles
+      <workspace-gathering-member-roles
         [members]="members$ | async"
         (memberRoleChanged)="changeRole($event)"
         [allRoles]="allRoles$ | async"
-      ></workspace-meetup-member-roles>
+      ></workspace-gathering-member-roles>
     </div>
   </div>
 </div>

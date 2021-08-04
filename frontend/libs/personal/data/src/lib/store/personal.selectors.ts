@@ -10,10 +10,10 @@ export const selectPersonalState = createSelector(
   (state: PersonalState) => state.personal
 );
 
-export const selectAllPersonalMeetups = createSelector(
+export const selectAllPersonalGatherings = createSelector(
   selectPersonalState,
   (state: fromReducer.ReducerPersonalState) =>
-    Object.keys(state.meetups).map((id) => state.meetups[id])
+    Object.keys(state.gatherings).map((id) => state.gatherings[id])
 );
 
 export const selectAllPersonalGroups = createSelector(

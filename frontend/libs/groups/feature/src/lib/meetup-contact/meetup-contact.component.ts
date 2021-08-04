@@ -6,16 +6,16 @@ import { ContactGathering } from '@workspace/shared/data';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'workspace-meetup-contact',
-  templateUrl: './meetup-contact.component.html',
-  styleUrls: ['./meetup-contact.component.scss'],
+  selector: 'workspace-gathering-contact',
+  templateUrl: './gathering-contact.component.html',
+  styleUrls: ['./gathering-contact.component.scss'],
 })
-export class MeetupContactComponent implements OnInit {
+export class GatheringContactComponent implements OnInit {
   isLoading$: Observable<boolean>;
   constructor(private store: Store<any>) {}
 
   ngOnInit(): void {
-    this.ensureMeetupIsInStore();
+    this.ensureGatheringIsInStore();
 
     this.isLoading$ = this.store.pipe(select(selectGroupsLoading));
   }
@@ -24,7 +24,7 @@ export class MeetupContactComponent implements OnInit {
     this.store.dispatch(fromStore.sendGatheringMessage({ payload }));
   }
 
-  private ensureMeetupIsInStore() {
-    this.store.dispatch(fromStore.getSingleMeetup());
+  private ensureGatheringIsInStore() {
+    this.store.dispatch(fromStore.getSingleGathering());
   }
 }

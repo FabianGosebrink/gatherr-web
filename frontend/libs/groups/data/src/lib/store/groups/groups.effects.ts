@@ -2,20 +2,19 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { ContactApiService, GroupsApiService } from '@workspace/groups/api';
+import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { selectRouteParam } from '@workspace/shared/state';
 import { UploadApiService, UtilsService } from '@workspace/shared/utils';
 import { of } from 'rxjs';
 import {
   catchError,
-  flatMap,
   map,
   switchMap,
   tap,
   withLatestFrom,
 } from 'rxjs/operators';
-import * as meetupActions from '../meetups/meetups.actions';
+import * as gatheringActions from '../gatherings/gatherings.actions';
 import * as groupActions from './groups.actions';
 import {
   selectCurrentGroup,
@@ -147,10 +146,10 @@ export class GroupEffects {
       withLatestFrom(this.store.pipe(select(selectRouteParam('id')))),
       switchMap(([action, linkName]) =>
         this.apiService.getSingle(linkName).pipe(
-          flatMap((result) => [
+          switchMap((result) => [
             groupActions.getSingleGroupSuccess({ payload: result }),
             // TODO When editing a form those do not have to be loaded
-            meetupActions.getAllMeetupsFromGroup(),
+            gatheringActions.getAllGatheringsFromGroup(),
             groupActions.getAllMembersFromGroup({ payload: linkName }),
           ]),
           catchError((error) => of(groupActions.groupError({ payload: error })))
@@ -260,7 +259,7 @@ export class GroupEffects {
           ),
           map(() => groupActions.sendGroupMessageSuccess()),
           catchError((error) =>
-            of(meetupActions.meetupError({ payload: error }))
+            of(gatheringActions.gatheringError({ payload: error }))
           )
         );
       })

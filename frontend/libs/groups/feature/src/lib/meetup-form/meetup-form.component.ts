@@ -17,10 +17,10 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { select, Store } from '@ngrx/store';
-import { DesktopCameraService, Photo } from '@workspace/shared/camera';
 import * as fromGroupStore from '@workspace/groups/data';
 import { MapsService } from '@workspace/maps/util';
-import { Meetup } from '@workspace/shared/data';
+import { DesktopCameraService, Photo } from '@workspace/shared/camera';
+import { Gathering } from '@workspace/shared/data';
 import { ChooseCameraComponent } from '@workspace/shared/ui-common';
 import { AddressExtractor } from '@workspace/shared/utils';
 import * as dayjs from 'dayjs';
@@ -32,11 +32,11 @@ const HH_MM_PATTERN = '^([0-1][0-9]|[2][0-3]):([0-5][0-9])$';
 declare var google: any;
 
 @Component({
-  selector: 'workspace-meetup-form',
-  templateUrl: './meetup-form.component.html',
-  styleUrls: ['./meetup-form.component.scss'],
+  selector: 'workspace-gathering-form',
+  templateUrl: './gathering-form.component.html',
+  styleUrls: ['./gathering-form.component.scss'],
 })
-export class MeetupFormComponent implements OnInit, AfterViewInit {
+export class GatheringFormComponent implements OnInit, AfterViewInit {
   @ViewChild('map', { static: true }) mapElement: ElementRef;
   @ViewChild('addresstext') addressText: any;
   @ViewChild('fileInput') fileInput: ElementRef;
@@ -53,7 +53,7 @@ export class MeetupFormComponent implements OnInit, AfterViewInit {
   someFunction: any;
   isLoading$: Observable<boolean>;
   place = '';
-  item: Meetup;
+  item: Gathering;
 
   get isEditing() {
     return !!this.form.get('id').value;
@@ -95,27 +95,30 @@ export class MeetupFormComponent implements OnInit, AfterViewInit {
     this.showCurrentPosition(this.googleMap);
 
     // TODO REPLACE THE TWO SUBSCRIBES
-    if (!!this.activatedRoute.snapshot.params.meetupid) {
+    if (!!this.activatedRoute.snapshot.params.gatheringid) {
       this.store
         .pipe(
-          select(fromGroupStore.selectCurrentMeetup),
+          select(fromGroupStore.selectCurrentGathering),
           filter((item) => !!item)
         )
-        .subscribe((meetup) => {
-          this.item = meetup;
+        .subscribe((gathering) => {
+          this.item = gathering;
           this.mapsService
-            .getPlaceByLatLng(meetup.latitude, meetup.longitude)
+            .getPlaceByLatLng(gathering.latitude, gathering.longitude)
             .subscribe((place) => {
               this.zone.run(() => {
                 this.place = place;
-                const meetupForForm = this.prepareMeetupForForm(meetup, place);
-                this.form.patchValue(meetupForForm);
+                const gatheringForForm = this.prepareGatheringForForm(
+                  gathering,
+                  place
+                );
+                this.form.patchValue(gatheringForForm);
                 this.showPlaceOnMap(place);
               });
             });
         });
 
-      this.store.dispatch(fromGroupStore.getSingleMeetup());
+      this.store.dispatch(fromGroupStore.getSingleGathering());
     }
 
     this.googleMap.addListener('click', (e) => {
@@ -143,18 +146,18 @@ export class MeetupFormComponent implements OnInit, AfterViewInit {
       this.filename = this.selectedFile.name;
     }
 
-    const meetup = this.prepareFormForSubmit();
+    const gathering = this.prepareFormForSubmit();
 
     if (this.form.value.id) {
       this.store.dispatch(
-        fromGroupStore.updateMeetup({
-          meetup,
+        fromGroupStore.updateGathering({
+          gathering,
         })
       );
     } else {
       this.store.dispatch(
-        fromGroupStore.addMeetupToCurrentGroup({
-          meetup,
+        fromGroupStore.addGatheringToCurrentGroup({
+          gathering,
           formData,
         })
       );
@@ -233,23 +236,23 @@ export class MeetupFormComponent implements OnInit, AfterViewInit {
     };
   }
 
-  private prepareMeetupForForm(meetup: Meetup, place: any) {
+  private prepareGatheringForForm(gathering: Gathering, place: any) {
     const pos = {
-      lat: meetup.latitude,
-      lng: meetup.longitude,
+      lat: gathering.latitude,
+      lng: gathering.longitude,
     };
     this.googleMap.setCenter(pos);
     this.setMarker(pos);
 
-    let { date } = meetup;
+    let { date } = gathering;
     date = new Date(date);
     return {
-      id: meetup.id,
-      title: meetup.title,
-      description: meetup.description,
+      id: gathering.id,
+      title: gathering.title,
+      description: gathering.description,
       date,
       time: `${date.getHours()}:${date.getMinutes()}`,
-      maxAttendees: meetup.maxAttendees,
+      maxAttendees: gathering.maxAttendees,
       place,
     };
   }

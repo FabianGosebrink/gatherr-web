@@ -2,17 +2,17 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
 import { SharedUiLayoutModule } from '@workspace/shared/ui-layout';
-import { MeetupsPersonalComponent } from './meetups-personal.component';
+import { GatheringsPersonalComponent } from './gatherings-personal.component';
 
-describe('MeetupsPersonalComponent', () => {
-  let component: MeetupsPersonalComponent;
-  let fixture: ComponentFixture<MeetupsPersonalComponent>;
+describe('GatheringsPersonalComponent', () => {
+  let component: GatheringsPersonalComponent;
+  let fixture: ComponentFixture<GatheringsPersonalComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [SharedUiLayoutModule],
-        declarations: [MeetupsPersonalComponent],
+        declarations: [GatheringsPersonalComponent],
         providers: [provideMockStore({})],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
@@ -20,7 +20,7 @@ describe('MeetupsPersonalComponent', () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeetupsPersonalComponent);
+    fixture = TestBed.createComponent(GatheringsPersonalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

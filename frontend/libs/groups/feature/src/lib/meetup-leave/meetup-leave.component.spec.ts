@@ -2,17 +2,17 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { MeetupLeaveComponent } from './meetup-leave.component';
+import { GatheringLeaveComponent } from './gathering-leave.component';
 
-describe('MeetupLeaveComponent', () => {
-  let component: MeetupLeaveComponent;
-  let fixture: ComponentFixture<MeetupLeaveComponent>;
+describe('GatheringLeaveComponent', () => {
+  let component: GatheringLeaveComponent;
+  let fixture: ComponentFixture<GatheringLeaveComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
         imports: [RouterTestingModule],
-        declarations: [MeetupLeaveComponent],
+        declarations: [GatheringLeaveComponent],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
         providers: [provideMockStore({})],
       }).compileComponents();
@@ -20,7 +20,7 @@ describe('MeetupLeaveComponent', () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeetupLeaveComponent);
+    fixture = TestBed.createComponent(GatheringLeaveComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

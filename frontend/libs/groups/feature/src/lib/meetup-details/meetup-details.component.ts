@@ -4,26 +4,26 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import * as fromAuthStore from '@workspace/auth/data';
 import * as fromGroupStore from '@workspace/groups/data';
-import { MeetupMembersSignalRService } from '@workspace/groups/utils';
-import { Meetup, MeetupMember } from '@workspace/shared/data';
+import { GatheringMembersSignalRService } from '@workspace/groups/utils';
+import { Gathering, GatheringMember } from '@workspace/shared/data';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'workspace-meetup-details',
-  templateUrl: './meetup-details.component.html',
-  styleUrls: ['./meetup-details.component.scss'],
+  selector: 'workspace-gathering-details',
+  templateUrl: './gathering-details.component.html',
+  styleUrls: ['./gathering-details.component.scss'],
 })
-export class MeetupDetailsComponent implements OnInit, OnDestroy {
-  item$: Observable<Meetup>;
-  attendees$: Observable<MeetupMember[]>;
-  allAttendees$: Observable<MeetupMember[]>;
-  waitingList$: Observable<MeetupMember[]>;
+export class GatheringDetailsComponent implements OnInit, OnDestroy {
+  item$: Observable<Gathering>;
+  attendees$: Observable<GatheringMember[]>;
+  allAttendees$: Observable<GatheringMember[]>;
+  waitingList$: Observable<GatheringMember[]>;
   attendeesCount$: Observable<number>;
-  organisers$: Observable<MeetupMember[]>;
+  organisers$: Observable<GatheringMember[]>;
   isLoading$: Observable<boolean>;
   isLoggedIn$: Observable<boolean>;
-  isCurrentUserMeetupAttendee$: Observable<boolean>;
-  isCurrentUserMeetupOrganiser$: Observable<boolean>;
+  isCurrentUserGatheringAttendee$: Observable<boolean>;
+  isCurrentUserGatheringOrganiser$: Observable<boolean>;
   isCurrentUserOnWaitingList$: Observable<boolean>;
   selectIsCurrentUserAttending$: Observable<boolean>;
   address$: Observable<string>;
@@ -34,23 +34,23 @@ export class MeetupDetailsComponent implements OnInit, OnDestroy {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     public location: Location,
-    private meetupMembersSignalRService: MeetupMembersSignalRService
+    private gatheringMembersSignalRService: GatheringMembersSignalRService
   ) {}
 
   ngOnInit() {
     this.isLoading$ = this.store.pipe(select(fromGroupStore.selectIsLoading));
     this.isLoggedIn$ = this.store.pipe(select(fromAuthStore.selectIsLoggedIn));
-    this.isCurrentUserMeetupOrganiser$ = this.store.pipe(
-      select(fromGroupStore.selectIsCurrentUserMeetupOrganiser)
+    this.isCurrentUserGatheringOrganiser$ = this.store.pipe(
+      select(fromGroupStore.selectIsCurrentUserGatheringOrganiser)
     );
-    this.isCurrentUserMeetupAttendee$ = this.store.pipe(
-      select(fromGroupStore.selectIsCurrentUserMeetupAttendee)
+    this.isCurrentUserGatheringAttendee$ = this.store.pipe(
+      select(fromGroupStore.selectIsCurrentUserGatheringAttendee)
     );
     this.organisers$ = this.store.pipe(
-      select(fromGroupStore.selectCurrentMeetupOrganisers)
+      select(fromGroupStore.selectCurrentGatheringOrganisers)
     );
     this.waitingList$ = this.store.pipe(
-      select(fromGroupStore.selectCurrentMeetupWaitingList)
+      select(fromGroupStore.selectCurrentGatheringWaitingList)
     );
     this.selectIsCurrentUserAttending$ = this.store.pipe(
       select(fromGroupStore.selectIsCurrentUserAttending)
@@ -59,37 +59,39 @@ export class MeetupDetailsComponent implements OnInit, OnDestroy {
       select(fromGroupStore.selectIsCurrentUserOnWaitingList)
     );
 
-    this.item$ = this.store.pipe(select(fromGroupStore.selectCurrentMeetup));
+    this.item$ = this.store.pipe(select(fromGroupStore.selectCurrentGathering));
 
-    this.address$ = this.store.pipe(select(fromGroupStore.selectMeetupAddress));
+    this.address$ = this.store.pipe(
+      select(fromGroupStore.selectGatheringAddress)
+    );
 
     this.attendees$ = this.store.pipe(
-      select(fromGroupStore.selectCurrentMeetupAttendees)
+      select(fromGroupStore.selectCurrentGatheringAttendees)
     );
 
     this.allAttendees$ = this.store.pipe(
-      select(fromGroupStore.selectAllCurrentMeetupAttendees)
+      select(fromGroupStore.selectAllCurrentGatheringAttendees)
     );
 
     this.attendeesCount$ = this.store.pipe(
-      select(fromGroupStore.selectAllCurrentMeetupAttendeesCount)
+      select(fromGroupStore.selectAllCurrentGatheringAttendeesCount)
     );
 
     this.widthExp$ = this.store.pipe(
-      select(fromGroupStore.selectAllCurrentMeetupAttendeesCountInPercent)
+      select(fromGroupStore.selectAllCurrentGatheringAttendeesCountInPercent)
     );
 
-    this.store.dispatch(fromGroupStore.getSingleMeetup());
+    this.store.dispatch(fromGroupStore.getSingleGathering());
 
-    this.meetupMembersSignalRService.initMeetupMemberSignalr();
+    this.gatheringMembersSignalRService.initGatheringMemberSignalr();
   }
 
   ngOnDestroy(): void {
-    this.meetupMembersSignalRService.stopConnection();
+    this.gatheringMembersSignalRService.stopConnection();
   }
 
-  addCurrentUserToMeetup() {
-    this.store.dispatch(fromGroupStore.addCurrentUserToAttendMeetup());
+  addCurrentUserToGathering() {
+    this.store.dispatch(fromGroupStore.addCurrentUserToAttendGathering());
   }
 
   navigateToGroup() {

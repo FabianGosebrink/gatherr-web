@@ -8,19 +8,19 @@ import {
   SimpleChanges,
 } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { GroupRole, MeetupMember } from '@workspace/shared/data';
+import { GatheringMember, GroupRole } from '@workspace/shared/data';
 import { debounceTime, tap } from 'rxjs/operators';
 
 @Component({
-  selector: 'workspace-meetup-member-roles',
-  templateUrl: './meetup-member-roles.component.html',
-  styleUrls: ['./meetup-member-roles.component.scss'],
+  selector: 'workspace-gathering-member-roles',
+  templateUrl: './gathering-member-roles.component.html',
+  styleUrls: ['./gathering-member-roles.component.scss'],
 })
-export class MeetupMemberRolesComponent implements OnInit, OnChanges {
-  @Input() members: MeetupMember[] = [];
+export class GatheringMemberRolesComponent implements OnInit, OnChanges {
+  @Input() members: GatheringMember[] = [];
   @Input() allRoles: number[] = [];
   @Output() memberRoleChanged = new EventEmitter();
-  membersBackUp: MeetupMember[] = [];
+  membersBackUp: GatheringMember[] = [];
 
   searchText = new FormControl('');
   loading: boolean;
@@ -49,7 +49,7 @@ export class MeetupMemberRolesComponent implements OnInit, OnChanges {
     }
   }
 
-  roleChanged(role: GroupRole, member: MeetupMember) {
+  roleChanged(role: GroupRole, member: GatheringMember) {
     this.memberRoleChanged.emit({ role, member });
   }
 }

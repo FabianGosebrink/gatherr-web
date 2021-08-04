@@ -7,6 +7,8 @@
   ></mat-progress-bar>
 
   <ng-template #list>
-    <workspace-meetup-list [items]="items$ | async"></workspace-meetup-list>
+    <workspace-gathering-list
+      [items]="items$ | async"
+    ></workspace-gathering-list>
   </ng-template>
 </div>

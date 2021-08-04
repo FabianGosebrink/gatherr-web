@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Meetup, MeetupFilter, ModelDescriptor } from '@workspace/shared/data';
+import {
+  Gathering,
+  GatheringFilter,
+  ModelDescriptor,
+} from '@workspace/shared/data';
 import { HttpBaseService } from '@workspace/shared/utils';
 
 @Injectable({ providedIn: 'root' })
-export class LocalMeetupsApiService {
+export class LocalGatheringsApiService {
   constructor(private http: HttpBaseService) {}
 
-  getLocalMeetups(filterDto: MeetupFilter) {
-    const url = 'meetups';
+  getLocalGatherings(filterDto: GatheringFilter) {
+    const url = 'gatherings';
     const filter = this.turnFilterIntoUrl(filterDto);
-    return this.http.get<ModelDescriptor<Meetup[]>>(`${url}${filter}`);
+    return this.http.get<ModelDescriptor<Gathering[]>>(`${url}${filter}`);
     //.subscribe(result => console.log(result));
     // const length = Math.round(Math.random() * 10);
     // const toReturn = [];
@@ -22,7 +26,7 @@ export class LocalMeetupsApiService {
     // return of({ value: toReturn, links: null, metadata: null });
   }
 
-  private turnFilterIntoUrl(filterDto?: MeetupFilter) {
+  private turnFilterIntoUrl(filterDto?: GatheringFilter) {
     if (!filterDto) {
       return '';
     }

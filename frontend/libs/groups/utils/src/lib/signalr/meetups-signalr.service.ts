@@ -7,14 +7,14 @@ import {
 } from '@microsoft/signalr';
 import { Store } from '@ngrx/store';
 import {
-  signalrMeetupAdded,
-  signalrMeetupRemoved,
+  signalrGatheringAdded,
+  signalrGatheringRemoved,
 } from '@workspace/groups/data';
-import { Meetup, ModelDescriptor } from '@workspace/shared/data';
+import { Gathering, ModelDescriptor } from '@workspace/shared/data';
 import { EnvironmentService } from '@workspace/shared/environment';
 
 @Injectable({ providedIn: 'root' })
-export class MeetupsSignalRService {
+export class GatheringsSignalRService {
   private connection: HubConnection;
 
   constructor(
@@ -22,15 +22,15 @@ export class MeetupsSignalRService {
     private store: Store<any>
   ) {}
 
-  initMeetupSignalr() {
+  initGatheringSignalr() {
     if (this.connection?.state === HubConnectionState.Connected) {
       return;
     }
 
-    console.log('stopConnection MeetupsSignalRService');
+    console.log('stopConnection GatheringsSignalRService');
 
     this.connection = new HubConnectionBuilder()
-      .withUrl(`${this.environmentService.getServerUrl()}meetupshub`)
+      .withUrl(`${this.environmentService.getServerUrl()}gatheringshub`)
       .configureLogging(LogLevel.Information)
       .withAutomaticReconnect()
       .build();
@@ -40,21 +40,24 @@ export class MeetupsSignalRService {
   }
 
   stopConnection() {
-    console.log('stopConnection MeetupsSignalRService');
+    console.log('stopConnection GatheringsSignalRService');
     this.connection.stop().catch((err) => console.log(err.toString()));
   }
 
   private registerOnEvents() {
-    this.connection.on('meetup-removed', (item) => {
-      this.store.dispatch(signalrMeetupRemoved({ payload: item }));
+    this.connection.on('gathering-removed', (item) => {
+      this.store.dispatch(signalrGatheringRemoved({ payload: item }));
     });
 
-    this.connection.on('meetup-added', (item: ModelDescriptor<Meetup>) => {
-      this.store.dispatch(
-        signalrMeetupAdded({
-          meetup: item,
-        })
-      );
-    });
+    this.connection.on(
+      'gathering-added',
+      (item: ModelDescriptor<Gathering>) => {
+        this.store.dispatch(
+          signalrGatheringAdded({
+            gathering: item,
+          })
+        );
+      }
+    );
   }
 }

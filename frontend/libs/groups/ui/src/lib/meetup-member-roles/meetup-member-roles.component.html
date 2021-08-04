@@ -13,11 +13,11 @@
     <span mat-subheader>Role</span>
   </div>
   <mat-divider></mat-divider>
-  <workspace-meetup-member-role-item
+  <workspace-gathering-member-role-item
     *ngFor="let member of members"
     [memberCount]="members.length"
     [member]="member"
     [allRoles]="allRoles"
     (roleChanged)="roleChanged($event, member)"
-  ></workspace-meetup-member-role-item>
+  ></workspace-gathering-member-role-item>
 </mat-list>

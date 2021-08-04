@@ -19,9 +19,9 @@
           mat-raised-button
           color="primary"
           class="attend-button"
-          (click)="addCurrentUserToMeetup()"
+          (click)="addCurrentUserToGathering()"
           *ngIf="
-            !(isCurrentUserMeetupAttendee$ | async) && (isLoggedIn$ | async)
+            !(isCurrentUserGatheringAttendee$ | async) && (isLoggedIn$ | async)
           "
         >
           Attend now
@@ -42,7 +42,7 @@
             class="dropdown-item"
             type="button"
             mat-menu-item
-            (click)="addCurrentUserToMeetup()"
+            (click)="addCurrentUserToGathering()"
             *ngIf="!(selectIsCurrentUserAttending$ | async)"
           >
             <mat-icon>person_add</mat-icon>
@@ -50,11 +50,11 @@
           </button>
           <a
             mat-menu-item
-            *ngIf="isCurrentUserMeetupOrganiser$ | async"
+            *ngIf="isCurrentUserGatheringOrganiser$ | async"
             [routerLink]="[
               '/groups',
               item.groupLinkName,
-              'meetups',
+              'gatherings',
               item.linkName,
               'edit'
             ]"
@@ -69,7 +69,7 @@
             [routerLink]="[
               '/groups',
               item.groupLinkName,
-              'meetups',
+              'gatherings',
               item.linkName,
               'leave'
             ]"
@@ -81,11 +81,11 @@
           <button
             mat-menu-item
             type="button"
-            *ngIf="isCurrentUserMeetupOrganiser$ | async"
+            *ngIf="isCurrentUserGatheringOrganiser$ | async"
             [routerLink]="[
               '/groups',
               item.groupLinkName,
-              'meetups',
+              'gatherings',
               item.linkName,
               'cancel'
             ]"
@@ -97,12 +97,12 @@
 
           <button
             mat-menu-item
-            *ngIf="isCurrentUserMeetupOrganiser$ | async"
+            *ngIf="isCurrentUserGatheringOrganiser$ | async"
             type="button"
             [routerLink]="[
               '/groups',
               item.groupLinkName,
-              'meetups',
+              'gatherings',
               item.linkName,
               'contact'
             ]"
@@ -112,12 +112,12 @@
           </button>
           <button
             mat-menu-item
-            *ngIf="isCurrentUserMeetupOrganiser$ | async"
+            *ngIf="isCurrentUserGatheringOrganiser$ | async"
             type="button"
             [routerLink]="[
               '/groups',
               item.groupLinkName,
-              'meetups',
+              'gatherings',
               item.linkName,
               'members'
             ]"
@@ -133,10 +133,14 @@
         <mat-chip *ngIf="item?.state === 1" color="accent" selected
           >Cancelled</mat-chip
         >
-        <mat-chip color="accent" *ngIf="isCurrentUserMeetupOrganiser$ | async"
+        <mat-chip
+          color="accent"
+          *ngIf="isCurrentUserGatheringOrganiser$ | async"
           >Organizer</mat-chip
         >
-        <mat-chip color="primary" *ngIf="isCurrentUserMeetupAttendee$ | async"
+        <mat-chip
+          color="primary"
+          *ngIf="isCurrentUserGatheringAttendee$ | async"
           >Attending</mat-chip
         >
         <mat-chip *ngIf="isCurrentUserOnWaitingList$ | async"
@@ -146,7 +150,7 @@
     </div>
 
     <div class="mt-20 red-box" *ngIf="item?.state === 1">
-      This meetup is cancelled
+      This gathering is cancelled
     </div>
 
     <div class="mt-20">

@@ -1,16 +1,16 @@
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { provideMockStore } from '@ngrx/store/testing';
-import { GroupsMeetupsListComponent } from './groups-meetups-list.component';
+import { GroupsGatheringsListComponent } from './groups-gatherings-list.component';
 
-describe('GroupsMeetupsListComponent', () => {
-  let component: GroupsMeetupsListComponent;
-  let fixture: ComponentFixture<GroupsMeetupsListComponent>;
+describe('GroupsGatheringsListComponent', () => {
+  let component: GroupsGatheringsListComponent;
+  let fixture: ComponentFixture<GroupsGatheringsListComponent>;
 
   beforeEach(
     waitForAsync(() => {
       TestBed.configureTestingModule({
-        declarations: [GroupsMeetupsListComponent],
+        declarations: [GroupsGatheringsListComponent],
         providers: [provideMockStore({})],
         schemas: [CUSTOM_ELEMENTS_SCHEMA],
       }).compileComponents();
@@ -18,7 +18,7 @@ describe('GroupsMeetupsListComponent', () => {
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GroupsMeetupsListComponent);
+    fixture = TestBed.createComponent(GroupsGatheringsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

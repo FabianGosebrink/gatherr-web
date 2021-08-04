@@ -1,14 +1,14 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Meetup } from '@workspace/shared/data';
+import { Gathering } from '@workspace/shared/data';
 
 @Component({
-  selector: 'workspace-local-meetup-list',
-  templateUrl: './local-meetup-list.component.html',
-  styleUrls: ['./local-meetup-list.component.scss'],
+  selector: 'workspace-local-gathering-list',
+  templateUrl: './local-gathering-list.component.html',
+  styleUrls: ['./local-gathering-list.component.scss'],
 })
-export class LocalMeetupListComponent {
-  @Input() localMeetups: Meetup[];
+export class LocalGatheringListComponent {
+  @Input() localGatherings: Gathering[];
   @Input() isLoading: boolean;
   @Input() city = '';
   @Output() navigateTo = new EventEmitter();

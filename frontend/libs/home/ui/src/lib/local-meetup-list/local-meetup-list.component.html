@@ -1,18 +1,18 @@
 <workspace-picture-list
-  [items]="localMeetups"
+  [items]="localGatherings"
   [headline]="'Events in ' + city"
   (itemClicked)="
     router.navigate([
       '/groups',
       $event.groupLinkName,
-      'meetups',
+      'gatherings',
       $event.linkName
     ])
   "
 ></workspace-picture-list>
 
-<ng-template #noMeetups
+<ng-template #noGatherings
   ><span>{{
-    'no-meetups-found-in' | transloco: { city: city }
+    'no-gatherings-found-in' | transloco: { city: city }
   }}</span></ng-template
 >

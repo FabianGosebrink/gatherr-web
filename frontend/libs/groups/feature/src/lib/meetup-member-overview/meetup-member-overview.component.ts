@@ -2,37 +2,37 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import * as fromStore from '@workspace/groups/data';
-import { getMeetupRoles } from '@workspace/groups/data';
-import { Meetup, MeetupMember } from '@workspace/shared/data';
+import { getGatheringRoles } from '@workspace/groups/data';
+import { Gathering, GatheringMember } from '@workspace/shared/data';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'workspace-meetup-member-overview',
-  templateUrl: './meetup-member-overview.component.html',
-  styleUrls: ['./meetup-member-overview.component.scss'],
+  selector: 'workspace-gathering-member-overview',
+  templateUrl: './gathering-member-overview.component.html',
+  styleUrls: ['./gathering-member-overview.component.scss'],
 })
-export class MeetupMemberOverviewComponent implements OnInit {
+export class GatheringMemberOverviewComponent implements OnInit {
   allRoles$: Observable<number[]>;
-  members$: Observable<MeetupMember[]>;
-  meetup$: Observable<Meetup>;
+  members$: Observable<GatheringMember[]>;
+  gathering$: Observable<Gathering>;
 
   constructor(private store: Store<any>, public location: Location) {}
 
   ngOnInit(): void {
-    this.allRoles$ = this.store.pipe(select(fromStore.selectAllMeetupRoles));
+    this.allRoles$ = this.store.pipe(select(fromStore.selectAllGatheringRoles));
     this.members$ = this.store.pipe(
-      select(fromStore.selectAllCurrentMeetupAttendees)
+      select(fromStore.selectAllCurrentGatheringAttendees)
     );
 
-    this.meetup$ = this.store.pipe(select(fromStore.selectCurrentMeetup));
+    this.gathering$ = this.store.pipe(select(fromStore.selectCurrentGathering));
 
-    this.store.dispatch(getMeetupRoles());
-    this.store.dispatch(fromStore.getSingleMeetup());
+    this.store.dispatch(getGatheringRoles());
+    this.store.dispatch(fromStore.getSingleGathering());
   }
 
   changeRole({ role, member }) {
     this.store.dispatch(
-      fromStore.updateMeetupMember({
+      fromStore.updateGatheringMember({
         memberId: member.memberId,
         role: role,
       })

@@ -3,11 +3,11 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedUiLayoutModule } from '@workspace/shared/ui-layout';
-import { MeetupMemberRoleItemComponent } from './meetup-member-role-item.component';
+import { GatheringMemberRoleItemComponent } from './gathering-member-role-item.component';
 
-describe('MeetupMemberRoleItemComponent', () => {
-  let component: MeetupMemberRoleItemComponent;
-  let fixture: ComponentFixture<MeetupMemberRoleItemComponent>;
+describe('GatheringMemberRoleItemComponent', () => {
+  let component: GatheringMemberRoleItemComponent;
+  let fixture: ComponentFixture<GatheringMemberRoleItemComponent>;
 
   beforeEach(
     waitForAsync(() => {
@@ -18,13 +18,13 @@ describe('MeetupMemberRoleItemComponent', () => {
           SharedUiLayoutModule,
           NoopAnimationsModule,
         ],
-        declarations: [MeetupMemberRoleItemComponent],
+        declarations: [GatheringMemberRoleItemComponent],
       }).compileComponents();
     })
   );
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MeetupMemberRoleItemComponent);
+    fixture = TestBed.createComponent(GatheringMemberRoleItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

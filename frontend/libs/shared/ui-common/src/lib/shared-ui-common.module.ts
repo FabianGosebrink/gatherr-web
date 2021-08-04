@@ -5,14 +5,14 @@ import { RouterModule } from '@angular/router';
 import { TranslocoModule } from '@ngneat/transloco';
 import { SharedUiLayoutModule } from '@workspace/shared/ui-layout';
 import { NgxWigModule } from 'ngx-wig';
+import { AddGatheringButtonComponent } from './add-gathering-button/add-gathering-button.component';
 import { AddGroupButtonComponent } from './add-group-button/add-group-button.component';
-import { AddMeetupButtonComponent } from './add-meetup-button/add-meetup-button.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { ConfirmComponent } from './components/confirm/confirm.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { GatheringListComponent } from './components/gathering-list/gathering-list.component';
 import { GroupListComponent } from './components/group-list/group-list.component';
 import { MapComponent } from './components/map/map.component';
-import { MeetupListComponent } from './components/meetup-list/meetup-list.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { PictureCardComponent } from './components/picture-card/picture-card.component';
@@ -46,12 +46,12 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     IsLoadingDirective,
     AddressPipe,
     GroupListComponent,
-    MeetupListComponent,
+    GatheringListComponent,
     MapComponent,
     ServerPrefixPipe,
     PictureListComponent,
     AddGroupButtonComponent,
-    AddMeetupButtonComponent,
+    AddGatheringButtonComponent,
     ConfirmComponent,
     PictureCardComponent,
   ],
@@ -67,13 +67,13 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     IsLoadingDirective,
     AddressPipe,
     GroupListComponent,
-    MeetupListComponent,
+    GatheringListComponent,
     MapComponent,
     ServerPrefixPipe,
     ChooseCameraComponent,
     PictureListComponent,
     AddGroupButtonComponent,
-    AddMeetupButtonComponent,
+    AddGatheringButtonComponent,
     ConfirmComponent,
     PictureCardComponent,
   ],

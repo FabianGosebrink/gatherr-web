@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { select, Store } from '@ngrx/store';
-import { SnackbarNotificationService } from '@workspace/shared/notification';
-import { LocalMeetupsApiService } from '@workspace/home/api';
+import { LocalGatheringsApiService } from '@workspace/home/api';
 import { MapsService } from '@workspace/maps/util';
+import { SnackbarNotificationService } from '@workspace/shared/notification';
 import { AddressExtractor } from '@workspace/shared/utils';
 import { of } from 'rxjs';
 import {
@@ -15,14 +15,14 @@ import {
   withLatestFrom,
 } from 'rxjs/operators';
 import * as homeActions from './home.actions';
-import { selectAllLocalMeetupsCount } from './home.selectors';
+import { selectAllLocalGatheringsCount } from './home.selectors';
 
 @Injectable()
 export class HomeEffects {
   constructor(
     private actions$: Actions,
     private store: Store<any>,
-    private apiService: LocalMeetupsApiService,
+    private apiService: LocalGatheringsApiService,
     private mapsService: MapsService,
     private addressExtractor: AddressExtractor,
     private notificationService: SnackbarNotificationService
@@ -47,7 +47,7 @@ export class HomeEffects {
 
             return [
               homeActions.getCurrentPlaceComplete({ payload }),
-              homeActions.getLocalMeetups({
+              homeActions.getLocalGatherings({
                 payload: { city, country },
               }),
             ];
@@ -58,14 +58,14 @@ export class HomeEffects {
     )
   );
 
-  getLocalMeetups$ = createEffect(() =>
+  getLocalGatherings$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(homeActions.getLocalMeetups),
+      ofType(homeActions.getLocalGatherings),
       switchMap(({ payload }) =>
-        this.apiService.getLocalMeetups(payload).pipe(
+        this.apiService.getLocalGatherings(payload).pipe(
           timeout(10000),
           map((result) =>
-            homeActions.getLocalMeetupsComplete({ payload: result })
+            homeActions.getLocalGatheringsComplete({ payload: result })
           ),
           catchError((error) => of(homeActions.homeError({ payload: error })))
         )
@@ -73,10 +73,10 @@ export class HomeEffects {
     )
   );
 
-  getMoreLocalMeetups$ = createEffect(() =>
+  getMoreLocalGatherings$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(homeActions.getMoreLocalMeetups),
-      withLatestFrom(this.store.pipe(select(selectAllLocalMeetupsCount))),
+      ofType(homeActions.getMoreLocalGatherings),
+      withLatestFrom(this.store.pipe(select(selectAllLocalGatheringsCount))),
       map(([{ payload }, skip]) => {
         return {
           ...payload,
@@ -84,9 +84,9 @@ export class HomeEffects {
         };
       }),
       switchMap((payload) =>
-        this.apiService.getLocalMeetups(payload).pipe(
+        this.apiService.getLocalGatherings(payload).pipe(
           map((result) =>
-            homeActions.getMoreLocalMeetupsComplete({ payload: result })
+            homeActions.getMoreLocalGatheringsComplete({ payload: result })
           ),
           catchError((error) => of(homeActions.homeError({ payload: error })))
         )
