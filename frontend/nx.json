@@ -51,16 +51,6 @@
     },
     "@schematics/angular:component": {
       "styleext": "scss"
-    },
-    "@nrwl/angular": {
-      "convert-tslint-to-eslint": {
-        "removeTSLintIfNoMoreTSLintTargets": true
-      }
-    },
-    "@nrwl/cypress": {
-      "convert-tslint-to-eslint": {
-        "removeTSLintIfNoMoreTSLintTargets": false
-      }
     }
   }
 }
