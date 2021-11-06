@@ -27,111 +27,6 @@
       }
     }
   },
-  "projects": {
-    "auth-api": {
-      "tags": []
-    },
-    "auth-data": {
-      "tags": []
-    },
-    "auth-feature": {
-      "tags": ["app-feature"]
-    },
-    "auth-util": {
-      "tags": []
-    },
-    "category-api": {
-      "tags": []
-    },
-    "category-data": {
-      "tags": []
-    },
-    "gatherr": {
-      "tags": ["app"]
-    },
-    "gatherr-e2e": {
-      "tags": [],
-      "implicitDependencies": ["gatherr"]
-    },
-    "groups-api": {
-      "tags": []
-    },
-    "groups-data": {
-      "tags": []
-    },
-    "groups-feature": {
-      "tags": ["app-feature"]
-    },
-    "groups-ui": {
-      "tags": []
-    },
-    "groups-utils": {
-      "tags": []
-    },
-    "home-api": {
-      "tags": []
-    },
-    "home-data": {
-      "tags": []
-    },
-    "home-feature": {
-      "tags": ["app-feature"]
-    },
-    "home-ui": {
-      "tags": []
-    },
-    "maps-util": {
-      "tags": []
-    },
-    "personal-api": {
-      "tags": []
-    },
-    "personal-data": {
-      "tags": []
-    },
-    "personal-feature": {
-      "tags": ["app-feature"]
-    },
-    "profile-api": {
-      "tags": []
-    },
-    "profile-data": {
-      "tags": []
-    },
-    "profile-feature": {
-      "tags": ["app-feature"]
-    },
-    "profile-util": {
-      "tags": []
-    },
-    "shared-api": {
-      "tags": []
-    },
-    "shared-camera": {
-      "tags": []
-    },
-    "shared-data": {
-      "tags": []
-    },
-    "shared-environment": {
-      "tags": []
-    },
-    "shared-notification": {
-      "tags": []
-    },
-    "shared-state": {
-      "tags": []
-    },
-    "shared-ui-common": {
-      "tags": []
-    },
-    "shared-ui-layout": {
-      "tags": []
-    },
-    "shared-utils": {
-      "tags": []
-    }
-  },
   "targetDependencies": {
     "build": [
       {
@@ -139,5 +34,33 @@
         "projects": "dependencies"
       }
     ]
+  },
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "npm",
+    "analytics": false
+  },
+  "defaultProject": "gatherr",
+  "generators": {
+    "@nrwl/angular:application": {
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "unitTestRunner": "jest"
+    },
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    },
+    "@nrwl/angular": {
+      "convert-tslint-to-eslint": {
+        "removeTSLintIfNoMoreTSLintTargets": true
+      }
+    },
+    "@nrwl/cypress": {
+      "convert-tslint-to-eslint": {
+        "removeTSLintIfNoMoreTSLintTargets": false
+      }
+    }
   }
 }

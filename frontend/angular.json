@@ -1,33 +1,5 @@
 {
   "version": 1,
-  "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "packageManager": "npm",
-    "analytics": false
-  },
-  "defaultProject": "gatherr",
-  "schematics": {
-    "@nrwl/angular:application": {
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "unitTestRunner": "jest"
-    },
-    "@schematics/angular:component": {
-      "styleext": "scss"
-    },
-    "@nrwl/angular": {
-      "convert-tslint-to-eslint": {
-        "removeTSLintIfNoMoreTSLintTargets": true
-      }
-    },
-    "@nrwl/cypress": {
-      "convert-tslint-to-eslint": {
-        "removeTSLintIfNoMoreTSLintTargets": false
-      }
-    }
-  },
   "projects": {
     "auth-api": {
       "projectType": "library",
@@ -54,7 +26,8 @@
           "outputs": ["coverage/libs/auth/api"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "auth-data": {
       "projectType": "library",
@@ -81,7 +54,8 @@
           "outputs": ["coverage/libs/auth/data"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "auth-feature": {
       "projectType": "library",
@@ -108,7 +82,8 @@
           "outputs": ["coverage/libs/auth/feature"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": ["app-feature"]
     },
     "auth-util": {
       "projectType": "library",
@@ -135,7 +110,8 @@
           "outputs": ["coverage/libs/auth/util"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "category-api": {
       "projectType": "library",
@@ -162,7 +138,8 @@
           "outputs": ["coverage/libs/category/api"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "category-data": {
       "projectType": "library",
@@ -189,7 +166,8 @@
           "outputs": ["coverage/libs/category/data"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "gatherr": {
       "projectType": "application",
@@ -280,7 +258,8 @@
               "apps/gatherr/src/**/*.ts",
               "apps/gatherr/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
           "builder": "@nrwl/jest:jest",
@@ -290,7 +269,8 @@
           },
           "outputs": ["coverage/apps/gatherr"]
         }
-      }
+      },
+      "tags": ["app"]
     },
     "gatherr-e2e": {
       "root": "apps/gatherr-e2e",
@@ -314,9 +294,12 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/gatherr-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["gatherr"]
     },
     "groups-api": {
       "projectType": "library",
@@ -343,7 +326,8 @@
           "outputs": ["coverage/libs/groups/api"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "groups-data": {
       "projectType": "library",
@@ -370,7 +354,8 @@
           "outputs": ["coverage/libs/groups/data"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "groups-feature": {
       "projectType": "library",
@@ -397,7 +382,8 @@
           "outputs": ["coverage/libs/groups/feature"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": ["app-feature"]
     },
     "groups-ui": {
       "projectType": "library",
@@ -424,7 +410,8 @@
           "outputs": ["coverage/libs/groups/ui"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "groups-utils": {
       "projectType": "library",
@@ -451,7 +438,8 @@
           "outputs": ["coverage/libs/groups/utils"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "home-api": {
       "projectType": "library",
@@ -478,7 +466,8 @@
           "outputs": ["coverage/libs/home/api"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "home-data": {
       "projectType": "library",
@@ -505,7 +494,8 @@
           "outputs": ["coverage/libs/home/data"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "home-feature": {
       "projectType": "library",
@@ -532,7 +522,8 @@
           "outputs": ["coverage/libs/home/feature"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": ["app-feature"]
     },
     "home-ui": {
       "projectType": "library",
@@ -559,7 +550,8 @@
           "outputs": ["coverage/libs/home/ui"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "maps-util": {
       "projectType": "library",
@@ -586,7 +578,8 @@
           "outputs": ["coverage/libs/maps/util"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "personal-api": {
       "projectType": "library",
@@ -617,7 +610,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "personal-data": {
       "projectType": "library",
@@ -648,7 +642,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "personal-feature": {
       "projectType": "library",
@@ -675,7 +670,8 @@
           "outputs": ["coverage/libs/personal/feature"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": ["app-feature"]
     },
     "profile-api": {
       "projectType": "library",
@@ -706,7 +702,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "profile-data": {
       "projectType": "library",
@@ -737,7 +734,8 @@
         "@nrwl/angular:component": {
           "style": "scss"
         }
-      }
+      },
+      "tags": []
     },
     "profile-feature": {
       "projectType": "library",
@@ -764,7 +762,8 @@
           "outputs": ["coverage/libs/profile/feature"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": ["app-feature"]
     },
     "profile-util": {
       "projectType": "library",
@@ -791,7 +790,8 @@
           "outputs": ["coverage/libs/profile/util"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "shared-api": {
       "projectType": "library",
@@ -818,7 +818,8 @@
           "outputs": ["coverage/libs/shared/api"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "shared-camera": {
       "projectType": "library",
@@ -845,7 +846,8 @@
           "outputs": ["coverage/libs/shared/camera"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "shared-data": {
       "projectType": "library",
@@ -872,7 +874,8 @@
           "outputs": ["coverage/libs/shared/data"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "shared-environment": {
       "projectType": "library",
@@ -899,7 +902,8 @@
           "outputs": ["coverage/libs/shared/environment"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "shared-notification": {
       "projectType": "library",
@@ -926,7 +930,8 @@
           "outputs": ["coverage/libs/shared/notification"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "shared-state": {
       "projectType": "library",
@@ -953,7 +958,8 @@
           "outputs": ["coverage/libs/shared/state"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "shared-ui-common": {
       "projectType": "library",
@@ -980,7 +986,8 @@
           "outputs": ["coverage/libs/shared/ui-common"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "shared-ui-layout": {
       "projectType": "library",
@@ -1007,7 +1014,8 @@
           "outputs": ["coverage/libs/shared/ui-layout"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     },
     "shared-utils": {
       "projectType": "library",
@@ -1034,7 +1042,8 @@
           "outputs": ["coverage/libs/shared/utils"]
         }
       },
-      "schematics": {}
+      "schematics": {},
+      "tags": []
     }
   }
 }
